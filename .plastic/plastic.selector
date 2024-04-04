@@ -1,0 +1,4 @@
+repository "Fox Village@ppj7515@cloud"
+  path "/"
+    br "/main"
+    co "/main"
