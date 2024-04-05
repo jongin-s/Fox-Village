@@ -107,8 +107,15 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# .plastic
+**/.plastic/*
+!.plastic/plastic.changes
+!.plastic/plastic.selector
+!.plastic/plastic.wktree
+!.plastic/plastic.workspace
+
 ### VisualStudioCode ###
-.vscode/*
+**/.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
