@@ -7,6 +7,11 @@ public class CineTouch : MonoBehaviour
     public FixedTouchField touchField;  // Canvas에 생성한 투명한 이미지
     private float rotSensitive = 1f;  // 카메라 민감도
 
+    private void Start()
+    {
+        cineCam = GetComponentInChildren<CinemachineFreeLook>();
+    }
+
     private void Update()
     {
         cineCam.m_XAxis.Value += touchField.TouchDist.x * rotSensitive * Time.deltaTime * 45;

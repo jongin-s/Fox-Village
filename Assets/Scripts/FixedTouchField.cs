@@ -12,7 +12,7 @@ public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (Pressed)
         {
-            if (PointerId >= 0 && PointerId < Input.touches.Length)  // 터치 포인터가 존재하고 터치 드래그의 길이보다 짧을 때
+            if (PointerId >= 0 && PointerId < Input.touches.Length)  // 터치 포인터가 존재할 때
             {
                 TouchDist = Input.touches[PointerId].position - PointerOld;
                 PointerOld = Input.touches[PointerId].position;  // TouchDist는 원래 포지션 PointerOld와 새 포지션 사이의 거리 벡터

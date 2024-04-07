@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RunButton : MonoBehaviour
+public class JumpButton : MonoBehaviour
 {
     public bool click=false;
 
