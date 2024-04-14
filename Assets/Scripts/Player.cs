@@ -17,9 +17,10 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60;  // 목표 FPS       
+        Application.targetFrameRate = 60;  // 목표 FPS
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  // 컴포넌트를 가져옴 (anim은 자식 오브젝트에 넣었기 때문에 GetComponentInChildren을 사용해야 함)
+        joy = GameObject.Find("Variable Joystick").GetComponent<VariableJoystick>();
         runButton = GameObject.Find("Canvas").GetComponent<RunButton>();
         jumpButton = GameObject.Find("Canvas").GetComponent<JumpButton>();  // Rigidbody와 Animator는 이 스크립트를 포함하는 오브젝트 내에 있기 때문에 GetComponent를 그대로 사용하면 되지만, 버튼은 그렇지 않기 때문에 반드시 버튼이 포함된 오브젝트의 이름을 찾아야 함!
     }
