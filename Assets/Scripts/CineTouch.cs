@@ -3,9 +3,9 @@ using Cinemachine;
 
 public class CineTouch : MonoBehaviour
 {
-    [SerializeField] CinemachineFreeLook cineCam;  // Cinemachine ÇÁ¸®·è Ä«¸Ş¶ó
-    public FixedTouchField touchField;  // Canvas¿¡ »ı¼ºÇÑ Åõ¸íÇÑ ÀÌ¹ÌÁö
-    private float rotSensitive = 1f;  // Ä«¸Ş¶ó ¹Î°¨µµ
+    [SerializeField] CinemachineFreeLook cineCam;  // Cinemachine í”„ë¦¬ë£© ì¹´ë©”ë¼
+    public FixedTouchField touchField;  // Canvasì— ìƒì„±í•œ íˆ¬ëª…í•œ ì´ë¯¸ì§€
+    private float rotSensitive = 1f;  // ì¹´ë©”ë¼ ë¯¼ê°ë„
 
     private void Start()
     {
@@ -15,6 +15,6 @@ public class CineTouch : MonoBehaviour
     private void Update()
     {
         cineCam.m_XAxis.Value += touchField.TouchDist.x * rotSensitive * Time.deltaTime * 45;
-        cineCam.m_YAxis.Value += touchField.TouchDist.y * rotSensitive * Time.deltaTime;  // Cinemachine ÇÁ¸®·è Ä«¸Ş¶óÀÇ xÃà °ªÀº -180<=x<=180ÀÎ ¹İ¸é, yÃà °ªÀº 0<=y<=1ÀÌ±â ¶§¹®¿¡ °°Àº ±æÀÌ¶óµµ touchField À§ÀÇ ¿òÁ÷ÀÓÀº xÃà ¿òÁ÷ÀÓ¿¡ Å« °ªÀ» °öÇØ¼­ Ä«¸Ş¶ó xÃàÀÌ ´õ ¸¹ÀÌ ¿òÁ÷ÀÌ±â ÇØ¾ß ÇÔ
+        cineCam.m_YAxis.Value += touchField.TouchDist.y * rotSensitive * Time.deltaTime;  // Cinemachine í”„ë¦¬ë£© ì¹´ë©”ë¼ì˜ xì¶• ê°’ì€ -180<=x<=180ì¸ ë°˜ë©´, yì¶• ê°’ì€ 0<=y<=1ì´ê¸° ë•Œë¬¸ì— ê°™ì€ ê¸¸ì´ë¼ë„ touchField ìœ„ì˜ ì›€ì§ì„ì€ xì¶• ì›€ì§ì„ì— í° ê°’ì„ ê³±í•´ì„œ ì¹´ë©”ë¼ xì¶•ì´ ë” ë§ì´ ì›€ì§ì´ê¸° í•´ì•¼ í•¨
     }
 }

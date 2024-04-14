@@ -2,63 +2,63 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public VariableJoystick joy;  // Á¶ÀÌ½ºÆ½ Å¬·¡½ºÀÇ ¸Ş¼Òµå
-    public float speed;  // ¼Óµµ º¯¼ö
-    public float jumpPower;  // Á¡ÇÁ Èû º¯¼ö
-    bool isJump = false;  // Á¡ÇÁ »óÅÂ ºÒ¸®¾ğ
+    public VariableJoystick joy;  // ì¡°ì´ìŠ¤í‹± í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ
+    public float speed;  // ì†ë„ ë³€ìˆ˜
+    public float jumpPower;  // ì í”„ í˜ ë³€ìˆ˜
+    bool isJump = false;  // ì í”„ ìƒíƒœ ë¶ˆë¦¬ì–¸
 
-    Rigidbody rigid;  // Rigidbody Å¬·¡½ºÀÇ ¸Ş¼Òµå
-    Animator anim;  // Animator Å¬·¡½ºÀÇ ¸Ş¼Òµå
-    RunButton runButton;  // RunButton Å¬·¡½ºÀÇ ¸Ş¼Òµå
-    JumpButton jumpButton;  // JumpButton Å¬·¡½ºÀÇ ¸Ş¼Òµå
+    Rigidbody rigid;  // Rigidbody í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ
+    Animator anim;  // Animator í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ
+    RunButton runButton;  // RunButton í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ
+    JumpButton jumpButton;  // JumpButton í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ
 
-    Vector3 moveVec;  // 3Â÷¿ø º¤ÅÍ º¯¼ö
-    [SerializeField] Transform cam;  // Transform Å¬·¡½ºÀÇ ¸Ş¼Òµå (Ä«¸Ş¶ó)
+    Vector3 moveVec;  // 3ì°¨ì› ë²¡í„° ë³€ìˆ˜
+    [SerializeField] Transform cam;  // Transform í´ë˜ìŠ¤ì˜ ë©”ì†Œë“œ (ì¹´ë©”ë¼)
 
     private void Start()
     {
-        Application.targetFrameRate = 60;  // ¸ñÇ¥ FPS
+        Application.targetFrameRate = 60;  // ëª©í‘œ FPS
         rigid = GetComponent<Rigidbody>();
-        anim = GetComponentInChildren<Animator>();  // ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È (animÀº ÀÚ½Ä ¿ÀºêÁ§Æ®¿¡ ³Ö¾ú±â ¶§¹®¿¡ GetComponentInChildrenÀ» »ç¿ëÇØ¾ß ÇÔ)
+        anim = GetComponentInChildren<Animator>();  // ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì ¸ì˜´ (animì€ ìì‹ ì˜¤ë¸Œì íŠ¸ì— ë„£ì—ˆê¸° ë•Œë¬¸ì— GetComponentInChildrenì„ ì‚¬ìš©í•´ì•¼ í•¨)
         joy = GameObject.Find("Variable Joystick").GetComponent<VariableJoystick>();
         runButton = GameObject.Find("Canvas").GetComponent<RunButton>();
-        jumpButton = GameObject.Find("Canvas").GetComponent<JumpButton>();  // Rigidbody¿Í Animator´Â ÀÌ ½ºÅ©¸³Æ®¸¦ Æ÷ÇÔÇÏ´Â ¿ÀºêÁ§Æ® ³»¿¡ ÀÖ±â ¶§¹®¿¡ GetComponent¸¦ ±×´ë·Î »ç¿ëÇÏ¸é µÇÁö¸¸, ¹öÆ°Àº ±×·¸Áö ¾Ê±â ¶§¹®¿¡ ¹İµå½Ã ¹öÆ°ÀÌ Æ÷ÇÔµÈ ¿ÀºêÁ§Æ®ÀÇ ÀÌ¸§À» Ã£¾Æ¾ß ÇÔ!
+        jumpButton = GameObject.Find("Canvas").GetComponent<JumpButton>();  // Rigidbodyì™€ AnimatorëŠ” ì´ ìŠ¤í¬ë¦½íŠ¸ë¥¼ í¬í•¨í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ ë‚´ì— ìˆê¸° ë•Œë¬¸ì— GetComponentë¥¼ ê·¸ëŒ€ë¡œ ì‚¬ìš©í•˜ë©´ ë˜ì§€ë§Œ, ë²„íŠ¼ì€ ê·¸ë ‡ì§€ ì•Šê¸° ë•Œë¬¸ì— ë°˜ë“œì‹œ ë²„íŠ¼ì´ í¬í•¨ëœ ì˜¤ë¸Œì íŠ¸ì˜ ì´ë¦„ì„ ì°¾ì•„ì•¼ í•¨!
     }
 
     private void Move()
     {
-        anim.SetBool("isWalk", moveVec != Vector3.zero);  // ¾Ö´Ï¸ŞÀÌ¼ÇÀº °È±â°¡ ±âº»°ª, ÀÌµ¿ º¤ÅÍ°¡ 0ÀÌ ¾Æ´Ï¶ó¸é °È±â
-        anim.SetBool("isRun", runButton.click);  // runButtonÀ» ´©¸£°í ÀÖ´Â µ¿¾È ´Ş¸®±â
+        anim.SetBool("isWalk", moveVec != Vector3.zero);  // ì• ë‹ˆë©”ì´ì…˜ì€ ê±·ê¸°ê°€ ê¸°ë³¸ê°’, ì´ë™ ë²¡í„°ê°€ 0ì´ ì•„ë‹ˆë¼ë©´ ê±·ê¸°
+        anim.SetBool("isRun", runButton.click);  // runButtonì„ ëˆ„ë¥´ê³  ìˆëŠ” ë™ì•ˆ ë‹¬ë¦¬ê¸°
 
-        float x = joy.Horizontal; float z = joy.Vertical;  // Á¶ÀÌ½ºÆ½ÀÇ °¡·Î¿Í ¼¼·Î ¹æÇâ ÁÂÇ¥´Â °¢°¢ xÃà°ú zÃà ¿òÁ÷ÀÓÀ¸·Î Ä¡È¯
-        Vector3 camForward = cam.forward; Vector3 camRight = cam.right;  // Ä«¸Ş¶óÀÇ »ó´ëÀûÀÎ ¹æÇâº¤ÅÍ
-        camForward.y = 0; camRight.y = 0;  // Ä«¸Ş¶óÀÇ yÃà ¹æÇàº¤ÅÍ´Â »ç¿ëÇÏÁö ¾ÊÀ» °ÍÀÌ¹Ç·Î 0À¸·Î ¼³Á¤
+        float x = joy.Horizontal; float z = joy.Vertical;  // ì¡°ì´ìŠ¤í‹±ì˜ ê°€ë¡œì™€ ì„¸ë¡œ ë°©í–¥ ì¢Œí‘œëŠ” ê°ê° xì¶•ê³¼ zì¶• ì›€ì§ì„ìœ¼ë¡œ ì¹˜í™˜
+        Vector3 camForward = cam.forward; Vector3 camRight = cam.right;  // ì¹´ë©”ë¼ì˜ ìƒëŒ€ì ì¸ ë°©í–¥ë²¡í„°
+        camForward.y = 0; camRight.y = 0;  // ì¹´ë©”ë¼ì˜ yì¶• ë°©í–‰ë²¡í„°ëŠ” ì‚¬ìš©í•˜ì§€ ì•Šì„ ê²ƒì´ë¯€ë¡œ 0ìœ¼ë¡œ ì„¤ì •
 
-        Vector3 forwardRelative = z * camForward.normalized; Vector3 rightRelative = x * camRight;  // Ä«¸Ş¶óÀÇ forward¸¦ zÃà, right¸¦ xÃàÀÇ ¿òÁ÷ÀÓ°ú °öÇÔ (Ä«¸Ş¶ó°¡ ³ôÀº °¢µµ¿¡ ÀÖÀ¸¸é, Áï Ä«¸Ş¶óÀÇ yÃà Àı´ñ°ªÀÌ Å©¸é camForwardÀÇ °ªÀÌ ÀÛ¾ÆÁö°í ÇÃ·¹ÀÌ¾îÀÇ Á¶ÀÌ½ºÆ½ ¼¼·Î ÀÌµ¿ÀÌ ´À·ÁÁö´Â Çö»ó ¹ß»ı, ÀÌ¸¦ ÇØ°áÇÏ±â À§ÇØ camForward¿¡ º¤ÅÍÀÇ °ªÀÌ Ç×»ó 1ÀÌ µÇ°Ô ÇÏ´Â normalized ¸Ş¼Òµå¸¦ »ç¿ëÇÏ¸é camForward = (0, -1, 0)ÀÌ ¾Æ´Ñ ÀÌ»ó ¹®Á¦°¡ ¹ß»ıÇÏÁö ¾ÊÀ½)
-        Vector3 moveDir = forwardRelative + rightRelative;  // Á¶ÀÌ½ºÆ½À» ¿òÁ÷ÀÏ ¶§ ÇÃ·¹ÀÌ¾î°¡ ½ÇÁ¦·Î ¿òÁ÷ÀÏ ¹æÇâÀº Ä«¸Ş¶óÀÇ »ó´ëÀûÀÎ ¹æÇâ¿¡ ÀÇÇØ °áÁ¤
+        Vector3 forwardRelative = z * camForward.normalized; Vector3 rightRelative = x * camRight;  // ì¹´ë©”ë¼ì˜ forwardë¥¼ zì¶•, rightë¥¼ xì¶•ì˜ ì›€ì§ì„ê³¼ ê³±í•¨ (ì¹´ë©”ë¼ê°€ ë†’ì€ ê°ë„ì— ìˆìœ¼ë©´, ì¦‰ ì¹´ë©”ë¼ì˜ yì¶• ì ˆëŒ“ê°’ì´ í¬ë©´ camForwardì˜ ê°’ì´ ì‘ì•„ì§€ê³  í”Œë ˆì´ì–´ì˜ ì¡°ì´ìŠ¤í‹± ì„¸ë¡œ ì´ë™ì´ ëŠë ¤ì§€ëŠ” í˜„ìƒ ë°œìƒ, ì´ë¥¼ í•´ê²°í•˜ê¸° ìœ„í•´ camForwardì— ë²¡í„°ì˜ ê°’ì´ í•­ìƒ 1ì´ ë˜ê²Œ í•˜ëŠ” normalized ë©”ì†Œë“œë¥¼ ì‚¬ìš©í•˜ë©´ camForward = (0, -1, 0)ì´ ì•„ë‹Œ ì´ìƒ ë¬¸ì œê°€ ë°œìƒí•˜ì§€ ì•ŠìŒ)
+        Vector3 moveDir = forwardRelative + rightRelative;  // ì¡°ì´ìŠ¤í‹±ì„ ì›€ì§ì¼ ë•Œ í”Œë ˆì´ì–´ê°€ ì‹¤ì œë¡œ ì›€ì§ì¼ ë°©í–¥ì€ ì¹´ë©”ë¼ì˜ ìƒëŒ€ì ì¸ ë°©í–¥ì— ì˜í•´ ê²°ì •
 
-        moveVec = new Vector3(moveDir.x, 0, moveDir.z) * speed * Time.deltaTime * (runButton.click ? 2 : 1);  // ÀÌµ¿ º¤ÅÍ¿¡ ¹İµå½Ã ¼Óµµ¿Í deltaTimeÀ» °öÇØÁà¾ß ÇÔ
-        rigid.MovePosition(rigid.position + moveVec);  // RigidbodyÀÇ ¿ø·¡ Æ÷Áö¼Ç¿¡¼­ ÀÌµ¿ º¤ÅÍ¸¦ ´õÇØ¼­ ¿òÁ÷ÀÓ
-        if (moveVec.sqrMagnitude == 0) return;  // sqrMagnitude´Â º¤ÅÍÀÇ °¢ °ªÀÇ Á¦°öÀÇ ÇÕ, ÀÌµ¿ º¤ÅÍ°¡ 0ÀÌ¸é ¸®ÅÏ
+        moveVec = new Vector3(moveDir.x, 0, moveDir.z) * speed * Time.deltaTime * (runButton.click ? 2 : 1);  // ì´ë™ ë²¡í„°ì— ë°˜ë“œì‹œ ì†ë„ì™€ deltaTimeì„ ê³±í•´ì¤˜ì•¼ í•¨
+        rigid.MovePosition(rigid.position + moveVec);  // Rigidbodyì˜ ì›ë˜ í¬ì§€ì…˜ì—ì„œ ì´ë™ ë²¡í„°ë¥¼ ë”í•´ì„œ ì›€ì§ì„
+        if (moveVec.sqrMagnitude == 0) return;  // sqrMagnitudeëŠ” ë²¡í„°ì˜ ê° ê°’ì˜ ì œê³±ì˜ í•©, ì´ë™ ë²¡í„°ê°€ 0ì´ë©´ ë¦¬í„´
     }
 
     private void Jump()
     {
-        if (jumpButton.click && !isJump)  // runButtonÀ» ´©¸£°í ÀÖ°í ÀÌ¹Ì Á¡ÇÁ ÁßÀÌ ¾Æ´Ò ¶§
+        if (jumpButton.click && !isJump)  // runButtonì„ ëˆ„ë¥´ê³  ìˆê³  ì´ë¯¸ ì í”„ ì¤‘ì´ ì•„ë‹ ë•Œ
         {
-            rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);  // Vector3.up == (0, 1, 0), Impulse´Â RigidbodyÀÇ Áú·®À» °¨¾ÈÇØ¼­ ¼ø°£ÀûÀÎ ÈûÀ» °¡ÇÔ
-            isJump = true;  // Á¡ÇÁ »óÅÂ¸¦ true·Î ÀüÈ¯
+            rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);  // Vector3.up == (0, 1, 0), ImpulseëŠ” Rigidbodyì˜ ì§ˆëŸ‰ì„ ê°ì•ˆí•´ì„œ ìˆœê°„ì ì¸ í˜ì„ ê°€í•¨
+            isJump = true;  // ì í”„ ìƒíƒœë¥¼ trueë¡œ ì „í™˜
             anim.SetBool("isJump", true);
-            anim.SetTrigger("doJump");  // isJump°¡ true°¡ µÇ°í doJump°¡ Æ®¸®°ÅµÉ ¶§ Á¡ÇÁ ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+            anim.SetTrigger("doJump");  // isJumpê°€ trueê°€ ë˜ê³  doJumpê°€ íŠ¸ë¦¬ê±°ë  ë•Œ ì í”„ ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
         }
     }
 
-    private void OnCollisionEnter(Collision collision)  // collisionÀº ÀÌ ¿ÀºêÁ§Æ®¿Í Ãæµ¹ÇÏ´Â ´Ù¸¥ ¿ÀºêÁ§Æ®
+    private void OnCollisionEnter(Collision collision)  // collisionì€ ì´ ì˜¤ë¸Œì íŠ¸ì™€ ì¶©ëŒí•˜ëŠ” ë‹¤ë¥¸ ì˜¤ë¸Œì íŠ¸
     {
-        if (collision.gameObject.tag == "Floor")  // ¿ÀºêÁ§Æ® Floor¿¡ ÅÂ±× Floor¸¦ ºÎÂø
+        if (collision.gameObject.tag == "Floor")  // ì˜¤ë¸Œì íŠ¸ Floorì— íƒœê·¸ Floorë¥¼ ë¶€ì°©
         {
-            isJump = false;  // Á¡ÇÁ »óÅÂ¸¦ false·Î ÀüÈ¯
-            anim.SetBool("isJump", false);  // isJump°¡ false°¡ µÉ ¶§ ÂøÁö ¾Ö´Ï¸ŞÀÌ¼Ç ½ÇÇà
+            isJump = false;  // ì í”„ ìƒíƒœë¥¼ falseë¡œ ì „í™˜
+            anim.SetBool("isJump", false);  // isJumpê°€ falseê°€ ë  ë•Œ ì°©ì§€ ì• ë‹ˆë©”ì´ì…˜ ì‹¤í–‰
         }
     }
 
@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         {
             Quaternion dirQuat = Quaternion.LookRotation(moveVec);
             Quaternion moveQuat = Quaternion.Slerp(rigid.rotation, dirQuat, 0.3f);
-            rigid.MoveRotation(moveQuat);  // Quaternion Å¬·¡½º´Â 3Â÷¿ø º¤ÅÍ°ª°ú È¸Àü°ªÀ» ¹­Àº 4Â÷¿ø Æ©ÇÃ, ¸Å²ô·¯¿î È¸Àü ±¸Çö
+            rigid.MoveRotation(moveQuat);  // Quaternion í´ë˜ìŠ¤ëŠ” 3ì°¨ì› ë²¡í„°ê°’ê³¼ íšŒì „ê°’ì„ ë¬¶ì€ 4ì°¨ì› íŠœí”Œ, ë§¤ë„ëŸ¬ìš´ íšŒì „ êµ¬í˜„
         }
     }
 
@@ -76,6 +76,6 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
-        Turn();  // ÇÔ¼ö Á¤¸®
+        Turn();  // í•¨ìˆ˜ ì •ë¦¬
     }
 }

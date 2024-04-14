@@ -1,36 +1,36 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  // ÅÍÄ¡ Æ÷ÀÎÅÍ ÇÚµé·¯¸¦ °¡Á®¿Í¾ß ÇÔ
+public class FixedTouchField : MonoBehaviour, IPointerDownHandler, IPointerUpHandler  // í„°ì¹˜ í¬ì¸í„° í•¸ë“¤ëŸ¬ë¥¼ ê°€ì ¸ì™€ì•¼ í•¨
 {
-    [HideInInspector] public Vector2 TouchDist;  // ÅÍÄ¡ µå·¡±×ÀÇ ±æÀÌ¸¦ ³ªÅ¸³»´Â 2Â÷¿ø º¤ÅÍ
-    [HideInInspector] public Vector2 PointerOld;  // Ã³À½¿¡ ÅÍÄ¡ µå·¡±×¸¦ ½ÃÀÛÇß´ø À§Ä¡
-    [HideInInspector] protected int PointerId;  // ÅÍÄ¡ Æ÷ÀÎÅÍÀÇ ÀÌ¸§
-    [HideInInspector] public bool Pressed;  // ÅÍÄ¡ »óÅÂ¸¦ ³ªÅ¸³»´Â ºÒ¸®¾ð °ª
+    [HideInInspector] public Vector2 TouchDist;  // í„°ì¹˜ ë“œëž˜ê·¸ì˜ ê¸¸ì´ë¥¼ ë‚˜íƒ€ë‚´ëŠ” 2ì°¨ì› ë²¡í„°
+    [HideInInspector] public Vector2 PointerOld;  // ì²˜ìŒì— í„°ì¹˜ ë“œëž˜ê·¸ë¥¼ ì‹œìž‘í–ˆë˜ ìœ„ì¹˜
+    [HideInInspector] protected int PointerId;  // í„°ì¹˜ í¬ì¸í„°ì˜ ì´ë¦„
+    [HideInInspector] public bool Pressed;  // í„°ì¹˜ ìƒíƒœë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë¶ˆë¦¬ì–¸ ê°’
 
     void Update()
     {
         if (Pressed)
         {
-            if (PointerId >= 0 && PointerId < Input.touches.Length)  // ÅÍÄ¡ Æ÷ÀÎÅÍ°¡ Á¸ÀçÇÒ ¶§
+            if (PointerId >= 0 && PointerId < Input.touches.Length)  // í„°ì¹˜ í¬ì¸í„°ê°€ ì¡´ìž¬í•  ë•Œ
             {
                 TouchDist = Input.touches[PointerId].position - PointerOld;
-                PointerOld = Input.touches[PointerId].position;  // TouchDist´Â ¿ø·¡ Æ÷Áö¼Ç PointerOld¿Í »õ Æ÷Áö¼Ç »çÀÌÀÇ °Å¸® º¤ÅÍ
+                PointerOld = Input.touches[PointerId].position;  // TouchDistëŠ” ì›ëž˜ í¬ì§€ì…˜ PointerOldì™€ ìƒˆ í¬ì§€ì…˜ ì‚¬ì´ì˜ ê±°ë¦¬ ë²¡í„°
             }
             else
             {
                 TouchDist = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - PointerOld;
-                PointerOld = Input.mousePosition;  // Æ÷ÀÎÅÍ¸¦ Ã³À½ »ý¼ºÇÒ ¶§ ½ÇÇà
+                PointerOld = Input.mousePosition;  // í¬ì¸í„°ë¥¼ ì²˜ìŒ ìƒì„±í•  ë•Œ ì‹¤í–‰
             }
         }
-        else { TouchDist = new Vector2(); }  // ÅÍÄ¡ »óÅÂ°¡ ¾Æ´Ò ¶§ TouchDist¸¦ ÃÊ±âÈ­
+        else { TouchDist = new Vector2(); }  // í„°ì¹˜ ìƒíƒœê°€ ì•„ë‹ ë•Œ TouchDistë¥¼ ì´ˆê¸°í™”
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         Pressed = true;
         PointerId = eventData.pointerId;
-        PointerOld = eventData.position;  // ÅÍÄ¡¸¦ ÇÒ ¶§ Pressed¸¦ true·Î ¼³Á¤ÇÏ°í ÅÍÄ¡ Æ÷ÀÎÅÍ¿Í ±× À§Ä¡¸¦ »ý¼º
+        PointerOld = eventData.position;  // í„°ì¹˜ë¥¼ í•  ë•Œ Pressedë¥¼ trueë¡œ ì„¤ì •í•˜ê³  í„°ì¹˜ í¬ì¸í„°ì™€ ê·¸ ìœ„ì¹˜ë¥¼ ìƒì„±
     }
 
     public void OnPointerUp(PointerEventData eventData)
