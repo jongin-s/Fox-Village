@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class RunButton : MonoBehaviour
-{
+public class RunButton : MonoBehaviour {
+
     public bool click=false;
 
     public void PointerDown(){click=true;}
