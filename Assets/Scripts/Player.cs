@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour {
-
+public class Player : MonoBehaviour
+{
     public VariableJoystick joy;  // 조이스틱 클래스의 메소드
     public float speed;  // 속도 변수
     public float jumpPower;  // 점프 힘 변수
@@ -15,8 +15,8 @@ public class Player : MonoBehaviour {
     Vector3 moveVec;  // 3차원 벡터 변수
     [SerializeField] Transform cam;  // Transform 클래스의 메소드 (카메라)
 
-    private void Start() {
-
+    private void Start()
+    {
         Application.targetFrameRate = 60;  // 목표 FPS
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  // 컴포넌트를 가져옴 (anim은 자식 오브젝트에 넣었기 때문에 GetComponentInChildren을 사용해야 함)
@@ -25,8 +25,8 @@ public class Player : MonoBehaviour {
         jumpButton = GameObject.Find("Canvas").GetComponent<JumpButton>();  // Rigidbody와 Animator는 이 스크립트를 포함하는 오브젝트 내에 있기 때문에 GetComponent를 그대로 사용하면 되지만, 버튼은 그렇지 않기 때문에 반드시 버튼이 포함된 오브젝트의 이름을 찾아야 함!
     }
 
-    private void Move() {
-
+    private void Move()
+    {
         anim.SetBool("isWalk", moveVec != Vector3.zero);  // 애니메이션은 걷기가 기본값, 이동 벡터가 0이 아니라면 걷기
         anim.SetBool("isRun", runButton.click);  // runButton을 누르고 있는 동안 달리기
 
@@ -42,10 +42,10 @@ public class Player : MonoBehaviour {
         if (moveVec.sqrMagnitude == 0) return;  // sqrMagnitude는 벡터의 각 값의 제곱의 합, 이동 벡터가 0이면 리턴
     }
 
-    private void Jump() {
-
-        if (jumpButton.click && !isJump) {  // runButton을 누르고 있고 이미 점프 중이 아닐 때
-
+    private void Jump()
+    {
+        if (jumpButton.click && !isJump)  // runButton을 누르고 있고 이미 점프 중이 아닐 때
+        {
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);  // Vector3.up == (0, 1, 0), Impulse는 Rigidbody의 질량을 감안해서 순간적인 힘을 가함
             isJump = true;  // 점프 상태를 true로 전환
             anim.SetBool("isJump", true);
@@ -53,27 +53,27 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision collision) {  // collision은 이 오브젝트와 충돌하는 다른 오브젝트
-
-        if (collision.gameObject.tag == "Floor") {  // 오브젝트 Floor에 태그 Floor를 부착
-
+    private void OnCollisionEnter(Collision collision)  // collision은 이 오브젝트와 충돌하는 다른 오브젝트
+    {
+        if (collision.gameObject.tag == "Floor")  // 오브젝트 Floor에 태그 Floor를 부착
+        {
             isJump = false;  // 점프 상태를 false로 전환
             anim.SetBool("isJump", false);  // isJump가 false가 될 때 착지 애니메이션 실행
         }
     }
 
-    private void Turn() {
-
-        if (moveVec != Vector3.zero) {
-
+    private void Turn()
+    {
+        if (moveVec != Vector3.zero)
+        {
             Quaternion dirQuat = Quaternion.LookRotation(moveVec);
             Quaternion moveQuat = Quaternion.Slerp(rigid.rotation, dirQuat, 0.3f);
             rigid.MoveRotation(moveQuat);  // Quaternion 클래스는 3차원 벡터값과 회전값을 묶은 4차원 튜플, 매끄러운 회전 구현
         }
     }
 
-    private void FixedUpdate() {
-
+    private void FixedUpdate()
+    {
         Move();
         Jump();
         Turn();  // 함수 정리

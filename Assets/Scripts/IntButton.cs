@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class IntButton : MonoBehaviour {
-
+public class IntButton : MonoBehaviour
+{
     public bool click = false;
 
     public void PointerDown() { click = true; }

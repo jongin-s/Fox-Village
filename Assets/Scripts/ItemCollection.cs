@@ -7,14 +7,14 @@ public class ItemCollection : MonoBehaviour {
 
     public GameManager manager;  // Game Manager로 coin을 보내주기 위해 사용
 
-    void OnTriggerEnter(Collider other) {  // 아이템의 Trigger Collider가 작동했을 때
-
-        if (other.tag == "Item") {  // 충돌 물체의 태그가 "Item"이라면
-
+    void OnTriggerEnter(Collider other)  // 아이템의 Trigger Collider가 작동했을 때
+    {
+        if (other.tag == "Item")  // 충돌 물체의 태그가 "Item"이라면
+        {
             Item item = other.GetComponent<Item>();  // other, 즉 아이템의 Item 컴포넌트를 가져옴
 
-            switch (item.type) {  // switch는 아이템의 타입
-
+            switch (item.type)  // switch는 아이템의 타입
+            {
                 case Item.Type.Bronze:  // 아이템의 타입이 Bronze라면
                     coin += item.value;  // coin을 Bronze의 value만큼 증가
                     break;
