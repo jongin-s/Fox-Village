@@ -4,8 +4,8 @@ using TMPro;  // TMP 기능을 사용하기 위해 반드시 임포트
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI invTxt0;  // Inventory Panel의 각 슬롯의 텍스트
     public GameObject player;  // 플레이어의 GameObject
+    public TextMeshProUGUI invTxt15;  // Inventory Panel의 각 슬롯의 텍스트
 
     public void Start()
     {
@@ -14,12 +14,12 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        invTxt0 = GameObject.Find("Slot (15)").GetComponentInChildren<TextMeshProUGUI>();  // 구체적인 슬롯 이름에서 자식의 컴포넌트를 가져오지 않으면 다른 "Text (TMP)" 오브젝트가 업데이트됨
+        invTxt15 = GameObject.Find("Slot (15)").GetComponentInChildren<TextMeshProUGUI>();  // 구체적인 슬롯 이름에서 자식의 컴포넌트를 가져오지 않으면 다른 "Text (TMP)" 오브젝트가 업데이트됨
     }
 
-    public void GetItem(int count)
+    public void GetItem(TextMeshProUGUI invTxt, int count)
     {
-        invTxt0.text = $"{count}";  // $"{count}": 문자열 내에서 변수를 그대로 출력하는 문법
+        invTxt.text = $"{count}";  // $"{count}": 문자열 내에서 변수를 그대로 출력하는 문법
     }
 
     public void Save()

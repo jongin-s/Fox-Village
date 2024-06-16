@@ -36,7 +36,7 @@ namespace DialogueEditor
         private float m_hoverT = 0.0f;
         private eHoverState m_hoverState;
         private bool Hovering { get { return (m_hoverState == eHoverState.animatingOn || m_hoverState == eHoverState.animatingOff); } }
-        private Vector3 BigSize { get { return Vector3.one * 1.2f; } }
+        private Vector3 BigSize { get { return Vector3.one * 1.5f; } }  // 1.2f
 
 
         //--------------------------------------
@@ -61,8 +61,8 @@ namespace DialogueEditor
                     done = true;
                 }
                 Vector3 size = Vector3.one;
-                float ease = EaseOutQuart(normalised);
-                
+                float ease = EaseOutQuart(normalised);  // EaseOutQuart(normalised)
+
 
                 switch (m_hoverState)
                 {
@@ -70,11 +70,11 @@ namespace DialogueEditor
                         size = Vector3.Lerp(Vector3.one, BigSize, ease);
                         break;
                     case eHoverState.animatingOff:
-                        size = Vector3.Lerp(BigSize, Vector3.one, ease);
+                        size = Vector3.Lerp(Vector3.one, BigSize, ease);  // BigSize, Vector3.one
                         break;
                 }
 
-                m_rect.localScale = size;
+                m_rect.localScale = size;  // size
 
                 if (done)
                 {
@@ -100,7 +100,7 @@ namespace DialogueEditor
             }
             else
             {
-                ConversationManager.Instance.AlertHover(null);
+                ConversationManager.Instance.AlertHover(this);  // null
             }
         }
 
@@ -126,12 +126,12 @@ namespace DialogueEditor
         public void SetHovering(bool selected)
         {
             if (selected && (m_hoverState == eHoverState.animatingOn || m_hoverState == eHoverState.idleOn)) { return; }
-            if (!selected && (m_hoverState == eHoverState.animatingOff || m_hoverState == eHoverState.idleOff)) { return; }
+            if (!selected && (m_hoverState == eHoverState.animatingOff || m_hoverState == eHoverState.idleOff)) { return; }  // Off
 
             if (selected)
                 m_hoverState = eHoverState.animatingOn;
             else
-                m_hoverState = eHoverState.animatingOff;
+                m_hoverState = eHoverState.animatingOff;  // animatingOff
             m_hoverT = 0f;
         }
 
@@ -187,14 +187,14 @@ namespace DialogueEditor
 
                 case eButtonType.Speech:
                     {
-                        TextMesh.text = "> 계속"; // 계속 텍스트
+                        TextMesh.text = "> 계속";  // Continue.
                         TextMesh.font = continueFont;
                     }
                     break;
 
                 case eButtonType.End:
                     {
-                        TextMesh.text = "> 종료"; // 종료 텍스트
+                        TextMesh.text = "> 종료";  // End.
                         TextMesh.font = endFont;
                     }
                     break;

@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 public class ItemCollection : MonoBehaviour {
@@ -6,6 +7,15 @@ public class ItemCollection : MonoBehaviour {
     public int maxCoin;  // 가능한 최대 코인의 개수, 역시 Inspector에서 입력
 
     public GameManager manager;  // Game Manager로 coin을 보내주기 위해 사용
+
+    private void Awake()
+    {
+        if (!PlayerPrefs.HasKey("coin"))
+            coin = 0;
+        else
+            coin = PlayerPrefs.GetInt("coin");
+        manager.GetItem(manager.invTxt15, coin);  // coin을 Game Manager로 전달
+    }
 
     void OnTriggerEnter(Collider other)  // 아이템의 Trigger Collider가 작동했을 때
     {
@@ -16,19 +26,20 @@ public class ItemCollection : MonoBehaviour {
             switch (item.type)  // switch는 아이템의 타입
             {
                 case Item.Type.Bronze:  // 아이템의 타입이 Bronze라면
-                    coin += item.value;  // coin을 Bronze의 value만큼 증가
+                    coin += 25;  // coin을 Bronze의 value만큼 증가
                     break;
 
                 case Item.Type.Silver:
-                    coin += item.value;
+                    coin += 50;
                     break;
 
                 case Item.Type.Gold:
-                    coin += item.value;
+                    coin += 100;
                     break;  // 그 외의 다른 타입에 대해서도 동일하게 작성
             }
         }
         if (coin > maxCoin) coin = maxCoin;  // coin이 maxCoin을 넘어가지 않도록 설정
-        manager.GetItem(coin);  // coin을 Game Manager로 전달
+        PlayerPrefs.SetInt("coin", coin);
+        manager.GetItem(manager.invTxt15, coin);  // coin을 Game Manager로 전달
     }
 }

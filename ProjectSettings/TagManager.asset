@@ -7,18 +7,21 @@ TagManager:
   - Floor
   - Item
   - NPC
+  - Melee
+  - Enemy
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
+  - Player
   - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - DeadEnemy
+  - EnemyAttack
   - 
   - 
   - 

@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     Animator anim;  // Animator 클래스의 메소드
     RunButton runButton;  // RunButton 클래스의 메소드
     JumpButton jumpButton;  // JumpButton 클래스의 메소드
+    Damage damage;
 
     Vector3 moveVec;  // 3차원 벡터 변수
     [SerializeField] Transform cam;  // Transform 클래스의 메소드 (카메라)
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;  // 목표 FPS
+        damage = GetComponent<Damage>();
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  // 컴포넌트를 가져옴 (anim은 자식 오브젝트에 넣었기 때문에 GetComponentInChildren을 사용해야 함)
         joy = GameObject.Find("Variable Joystick").GetComponent<VariableJoystick>();
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if (jumpButton.click && !isJump)  // runButton을 누르고 있고 이미 점프 중이 아닐 때
+        if (jumpButton.click && !isJump)  // jumpButton을 누르고 있고 이미 점프 중이 아닐 때
         {
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);  // Vector3.up == (0, 1, 0), Impulse는 Rigidbody의 질량을 감안해서 순간적인 힘을 가함
             isJump = true;  // 점프 상태를 true로 전환
@@ -74,8 +76,17 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
-        Jump();
-        Turn();  // 함수 정리
+        if (!damage.isDead)
+        {
+            Move();
+            Jump();
+            Turn();  // 함수 정리
+        }
+
+        if (!isJump && rigid.velocity.y >= 0)
+        {
+            rigid.velocity = Vector3.zero;
+            rigid.angularVelocity = Vector3.zero;
+        }
     }
 }
