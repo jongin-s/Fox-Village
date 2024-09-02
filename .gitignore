@@ -157,3 +157,6 @@ $RECYCLE.BIN/
 .vscode/launch.json
 .vscode/settings.json
 .vsconfig
+
+# .png
+*.png

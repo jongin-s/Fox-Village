@@ -5,6 +5,7 @@ public class Attack : MonoBehaviour
     Animator anim;
     AttackButton attackButton;
     Weapon weapon;
+    Damage damage;
 
     bool isAtkReady;
     float atkDelay;
@@ -15,6 +16,7 @@ public class Attack : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         weapon = GetComponentInChildren<Weapon>();
         attackButton = GameObject.Find("Canvas").GetComponent<AttackButton>();
+        damage = GetComponent<Damage>();
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class Attack : MonoBehaviour
         atkDelay += Time.deltaTime;
         isAtkReady = weapon.rate < atkDelay;
 
-        if (attackButton.click && isAtkReady)
+        if (attackButton.click && isAtkReady && !damage.isDead)
         {
             weapon.Use();
             anim.SetTrigger("doSwing");

@@ -71,7 +71,8 @@ public class Damage : MonoBehaviour
         {
             foreach (MeshRenderer mesh in meshes)
             {
-                mesh.material.color = Color.blue;
+                //mesh.material.color = Color.blue;
+                mesh.material.color = Color.white;
             }
 
             AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
