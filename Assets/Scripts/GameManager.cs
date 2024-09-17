@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         Load();  // 이 스크립트가 처음으로 실행될 때 같이 실행
+        Application.targetFrameRate = 24;  // 목표 FPS
     }
 
     public void Awake()

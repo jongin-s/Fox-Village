@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60;  // 목표 FPS
         damage = GetComponent<Damage>();
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  // 컴포넌트를 가져옴 (anim은 자식 오브젝트에 넣었기 때문에 GetComponentInChildren을 사용해야 함)
@@ -83,10 +82,14 @@ public class Player : MonoBehaviour
             Turn();  // 함수 정리
         }
 
-        if (!isJump && rigid.velocity.y >= 0)
+        if (!isJump)
         {
-            rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;
+
+            if (rigid.velocity.y >= 0)
+            {
+                rigid.velocity = Vector3.zero;
+            }
         }
     }
 }
