@@ -6,9 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;  // 플레이어의 GameObject
     public TextMeshProUGUI invTxt15;  // Inventory Panel의 각 슬롯의 텍스트
+    Damage damage;
 
     public void Start()
     {
+        damage = player.GetComponent<Damage>();
         Load();  // 이 스크립트가 처음으로 실행될 때 같이 실행
         Application.targetFrameRate = 24;  // 목표 FPS
     }
@@ -34,7 +36,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerRZ", player.transform.rotation.z);
         PlayerPrefs.SetFloat("PlayerRW", player.transform.rotation.w);  // 플레이어 회전을 나타내는 실수 4개를 저장
 
+        PlayerPrefs.SetInt("HP", damage.curHealth);
+
         PlayerPrefs.Save();
+
+        Debug.Log("Save Successful");
     }
 
     public void Load()
@@ -51,7 +57,12 @@ public class GameManager : MonoBehaviour
         float rz = PlayerPrefs.GetFloat("PlayerRZ");
         float rw = PlayerPrefs.GetFloat("PlayerRW");  // 플레이어 회전을 나타내는 실수 4개를 불러옴
 
+        int hp = PlayerPrefs.GetInt("HP");
+
         player.transform.position = new Vector3(x, y, z);  // 플레이어 위치를 지정
         player.transform.rotation = new Quaternion(rx, ry, rz, rw);  // 플레이어 회전을 지정
+        damage.curHealth = hp;
+
+        Debug.Log("Load Successful");
     }
 }

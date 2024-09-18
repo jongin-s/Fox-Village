@@ -1,7 +1,8 @@
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-public class ItemCollection : MonoBehaviour {
+public class ItemCollection : MonoBehaviour
+{
 
     public int coin;  // 현재 코인의 개수, Inspector에서 입력
     public int maxCoin;  // 가능한 최대 코인의 개수, 역시 Inspector에서 입력

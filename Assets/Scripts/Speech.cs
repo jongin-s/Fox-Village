@@ -33,10 +33,6 @@ public class Speech : MonoBehaviour
             }
             ConversationManager.Instance.StartConversation(conv);  // NPC 대화 시작
         }
-        if (ConversationManager.Instance.IsConversationActive)
-        {
-            manager.Save();  // NPC 대화가 종료되면 GameManager의 Save 메소드 실행
-        }
         if (!ConversationManager.Instance.IsConversationActive)
         {
             for (int i = 0; i < canvas.Length; i++)

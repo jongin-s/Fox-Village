@@ -16,14 +16,17 @@ public class Player : MonoBehaviour
     Vector3 moveVec;  // 3차원 벡터 변수
     [SerializeField] Transform cam;  // Transform 클래스의 메소드 (카메라)
 
+    public AudioSource footstep;
+
     private void Start()
     {
         damage = GetComponent<Damage>();
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  // 컴포넌트를 가져옴 (anim은 자식 오브젝트에 넣었기 때문에 GetComponentInChildren을 사용해야 함)
-        joy = GameObject.Find("Variable Joystick").GetComponent<VariableJoystick>();
         runButton = GameObject.Find("Canvas").GetComponent<RunButton>();
         jumpButton = GameObject.Find("Canvas").GetComponent<JumpButton>();  // Rigidbody와 Animator는 이 스크립트를 포함하는 오브젝트 내에 있기 때문에 GetComponent를 그대로 사용하면 되지만, 버튼은 그렇지 않기 때문에 반드시 버튼이 포함된 오브젝트의 이름을 찾아야 함!
+
+        footstep.gameObject.SetActive(false);
     }
 
     private void Move()
@@ -56,7 +59,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)  // collision은 이 오브젝트와 충돌하는 다른 오브젝트
     {
-        if (collision.gameObject.tag == "Floor")  // 오브젝트 Floor에 태그 Floor를 부착
+        if (collision.gameObject.layer == 3)  // 오브젝트 Floor에 레이어 Floor(3)를 부착
         {
             isJump = false;  // 점프 상태를 false로 전환
             anim.SetBool("isJump", false);  // isJump가 false가 될 때 착지 애니메이션 실행
@@ -73,23 +76,33 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void FootSteps()
+    {
+        if (Mathf.Pow(joy.Horizontal, 2) + Mathf.Pow(joy.Vertical, 2) != 0 && !isJump)
+        {
+            footstep.gameObject.SetActive(true);
+            footstep.pitch = 0.8f * (runButton.click ? 2 : 1);
+        }
+        else
+        {
+            footstep.gameObject.SetActive(false);
+        }
+    }
+
     private void FixedUpdate()
     {
         if (!damage.isDead)
         {
             Move();
             Jump();
-            Turn();  // 함수 정리
+            Turn();
+            FootSteps();  // 함수 정리
         }
 
         if (!isJump)
         {
             rigid.angularVelocity = Vector3.zero;
-
-            if (rigid.velocity.y >= 0)
-            {
-                rigid.velocity = Vector3.zero;
-            }
+            rigid.AddForce(Vector3.down * jumpPower, ForceMode.Impulse);
         }
     }
 }
