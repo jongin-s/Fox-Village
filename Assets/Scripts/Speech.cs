@@ -15,7 +15,6 @@ public class Speech : MonoBehaviour
     {
         intButton = GameObject.Find("Canvas").GetComponent<IntButton>();
         manager = GameObject.Find("Game Manager").GetComponent<GameManager>();  // IntButton과 GameManager 스크립트를 불러옴
-        dynamic.SetActive(false);  // 상호작용 버튼을 숨김
     }
 
     private void OnTriggerEnter(Collider other)

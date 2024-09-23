@@ -99,10 +99,10 @@ public class Player : MonoBehaviour
             FootSteps();  // 함수 정리
         }
 
-        if (!isJump)
+        if (!isJump && rigid.velocity.y >= 0)
         {
+            rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;
-            rigid.AddForce(Vector3.down * jumpPower, ForceMode.Impulse);
         }
     }
 }

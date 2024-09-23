@@ -6,8 +6,13 @@ public class PauseButton : MonoBehaviour
 {
     public GameObject[] canvas;
     public GameObject pause;
+    public GameObject options;
 
-    private void Start() { pause.SetActive(false); }
+    private void Start()
+    {
+        pause.SetActive(false);
+        options.SetActive(false);
+    }
 
     public void TogglePause()
     {
@@ -16,5 +21,6 @@ public class PauseButton : MonoBehaviour
             canvas[i].SetActive(false);
         }
         pause.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
