@@ -99,10 +99,13 @@ public class Player : MonoBehaviour
             FootSteps();  // 함수 정리
         }
 
-        if (!isJump && rigid.velocity.y >= 0)
+        if (!isJump)
         {
-            rigid.velocity = Vector3.zero;
             rigid.angularVelocity = Vector3.zero;
+            if (rigid.velocity.y >= 0)
+            {
+                rigid.velocity = Vector3.zero;
+            }
         }
     }
 }
