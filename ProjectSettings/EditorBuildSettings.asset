@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 4cd7fbd56caaf254e96aa83264eca826
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/MainScene Meadows.unity
     guid: d354642f6b4dd354386c134244222042
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: ed4c4a2827d2d584699b534e29b3dfc8, type: 2}
