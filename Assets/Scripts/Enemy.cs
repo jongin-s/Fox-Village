@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
     public BoxCollider meleeArea;
     public AudioClip hitSound;
     public AudioClip deathSound;
+    public HealthBar healthBar;
 
     Rigidbody rigid;
     BoxCollider boxCollider;
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         curHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
 
         Invoke("ChaseStart", 0);
     }
@@ -139,6 +141,7 @@ public class Enemy : MonoBehaviour
         {
             Weapon weapon = other.GetComponent<Weapon>();
             curHealth -= weapon.damage;
+            healthBar.SetHealth(curHealth);
 
             Vector3 reactVec = transform.position - other.transform.position;
 

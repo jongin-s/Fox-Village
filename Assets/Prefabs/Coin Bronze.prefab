@@ -5017,7 +5017,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2561399094425955517}
   - component: {fileID: 2440828356214135627}
-  - component: {fileID: 5005771076265312147}
+  - component: {fileID: 8119275927416213022}
   - component: {fileID: 766175849198988608}
   m_Layer: 0
   m_Name: Coin Bronze
@@ -5071,8 +5071,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &5005771076265312147
-SphereCollider:
+--- !u!65 &8119275927416213022
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5090,7 +5090,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &766175849198988608
 MonoBehaviour:
@@ -5105,5 +5105,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
-  value: 25
   sound: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}

@@ -11,6 +11,7 @@ public class Damage : MonoBehaviour
 
     public AudioClip hitSound;
     public AudioClip deathSound;
+    public HealthBar healthBar;
 
     Rigidbody rigid;
     MeshRenderer[] meshes;
@@ -23,6 +24,7 @@ public class Damage : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
 
         curHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,6 +35,7 @@ public class Damage : MonoBehaviour
             {
                 EnemyAttack enemyAtk = other.GetComponent<EnemyAttack>();
                 curHealth -= enemyAtk.damage;
+                healthBar.SetHealth(curHealth);
 
                 Vector3 reactVec = transform.position - other.transform.position;
 
