@@ -5,7 +5,14 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
+        if (!PlayerPrefs.HasKey("Scene"))
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("Scene"));
+        }
     }
 
     public void QuitGame()

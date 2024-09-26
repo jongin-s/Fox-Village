@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene Meadows.unity
     guid: d354642f6b4dd354386c134244222042
+  - enabled: 1
+    path: Assets/Scenes/SubScene Campsite.unity
+    guid: b4b5a415209e27846a446d4503c2f130
+  - enabled: 1
+    path: Assets/Scenes/SubScene Tower.unity
+    guid: cee8888b9b0b2c543b89b8d234529279
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: ed4c4a2827d2d584699b534e29b3dfc8, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 941088b6e5db98d48939f903cfccbf9c, type: 2}

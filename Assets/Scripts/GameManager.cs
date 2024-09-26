@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;  // TMP 기능을 사용하기 위해 반드시 임포트
 
 public class GameManager : MonoBehaviour
@@ -38,14 +39,16 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("HP", damage.curHealth);
 
+        PlayerPrefs.SetInt("Scene", SceneManager.GetActiveScene().buildIndex);
+
         PlayerPrefs.Save();
 
-        Debug.Log("Save Successful");
+        Debug.Log("Save Successful" + " " + SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Load()
     {
-        if (!PlayerPrefs.HasKey("PlayerX"))
+        if (!PlayerPrefs.HasKey("Scene"))
             return;  // 최초로 실행했을 때는 키가 없으므로 즉시 종료, 아무것도 실행되지 않음
 
         float x = PlayerPrefs.GetFloat("PlayerX");
@@ -58,6 +61,8 @@ public class GameManager : MonoBehaviour
         float rw = PlayerPrefs.GetFloat("PlayerRW");  // 플레이어 회전을 나타내는 실수 4개를 불러옴
 
         int hp = PlayerPrefs.GetInt("HP");
+
+        int scene = PlayerPrefs.GetInt("Scene");
 
         player.transform.position = new Vector3(x, y, z);  // 플레이어 위치를 지정
         player.transform.rotation = new Quaternion(rx, ry, rz, rw);  // 플레이어 회전을 지정

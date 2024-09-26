@@ -5,7 +5,7 @@ public class CineTouch : MonoBehaviour
 {
     [SerializeField] CinemachineFreeLook cineCam;  // Cinemachine 프리룩 카메라
     public FixedTouchField touchField;  // Canvas에 생성한 투명한 이미지
-    private float rotSensitive = 1f;  // 카메라 민감도
+    public float rotSensitive;  // 카메라 민감도
 
     private void Start()
     {
