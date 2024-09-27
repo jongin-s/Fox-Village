@@ -16,9 +16,9 @@ public class LoadingScreen : MonoBehaviour
         LoadingBarFill.gameObject.SetActive(false);
     }
 
-    public void LoadScene(int sceneID)
+    public void LoadScene()
     {
-        StartCoroutine(LoadSceneAsync(sceneID));
+        StartCoroutine(LoadSceneAsync(PlayerPrefs.GetInt("Scene")));
     }
 
     IEnumerator LoadSceneAsync(int sceneID)

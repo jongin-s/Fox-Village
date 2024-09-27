@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.Save();
 
-        Debug.Log("Save Successful" + " " + SceneManager.GetActiveScene().buildIndex);
+        Debug.Log("Save Successful" + " " + PlayerPrefs.GetInt("Scene"));
     }
 
     public void Load()
@@ -62,12 +62,10 @@ public class GameManager : MonoBehaviour
 
         int hp = PlayerPrefs.GetInt("HP");
 
-        int scene = PlayerPrefs.GetInt("Scene");
-
         player.transform.position = new Vector3(x, y, z);  // 플레이어 위치를 지정
         player.transform.rotation = new Quaternion(rx, ry, rz, rw);  // 플레이어 회전을 지정
         damage.curHealth = hp;
 
-        Debug.Log("Load Successful");
+        Debug.Log("Load Successful" + " " + PlayerPrefs.GetInt("Scene"));
     }
 }
