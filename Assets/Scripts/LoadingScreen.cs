@@ -18,12 +18,21 @@ public class LoadingScreen : MonoBehaviour
 
     public void LoadScene()
     {
-        StartCoroutine(LoadSceneAsync(PlayerPrefs.GetInt("Scene")));
+        if (!PlayerPrefs.HasKey("Scene"))
+        {
+            StartCoroutine(LoadSceneAsync(1));
+        }
+        else
+        {
+            StartCoroutine(LoadSceneAsync(PlayerPrefs.GetInt("Scene")));
+        }
     }
 
     IEnumerator LoadSceneAsync(int sceneID)
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(sceneID);
+        op.allowSceneActivation = true;
+        Time.timeScale = 1f;
 
         Screen.SetActive(true);
         MainMenu.SetActive(false);
