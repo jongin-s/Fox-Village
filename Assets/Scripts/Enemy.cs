@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip deathSound;
     public HealthBar healthBar;
+    public GameObject[] items;
 
     public delegate void EnemyDead();
     public static event EnemyDead OnEnemyDead;
@@ -193,6 +194,8 @@ public class Enemy : MonoBehaviour
             rigid.AddForce(reactVec * 5, ForceMode.Impulse);
 
             Destroy(gameObject, 3);
+
+            Instantiate(items[Random.Range(0, items.Length)], transform.position, Quaternion.identity);
             
             OnEnemyDead?.Invoke();
         }
