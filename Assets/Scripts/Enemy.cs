@@ -10,11 +10,12 @@ public class Enemy : MonoBehaviour
 
     public int maxHealth;
     public int curHealth;
-    public int damage;
+    public int chaseRange;
     public bool isChase;
     public bool isAttack;
 
     public Transform target;
+    public Transform home;
     public BoxCollider meleeArea;
     public AudioClip hitSound;
     public AudioClip deathSound;
@@ -48,9 +49,16 @@ public class Enemy : MonoBehaviour
 
     void Chase()
     {
-        if (nav.enabled && Vector3.Distance(transform.position, target.position) < 10)
+        if (nav.enabled)
         {
-            nav.SetDestination(target.position);
+            if (Vector3.Distance(transform.position, target.position) < chaseRange)
+            {
+                nav.SetDestination(target.position);
+            }
+            else
+            {
+                nav.SetDestination(new Vector3(home.position.x + Random.Range(-10.0f, 10.0f), home.position.y, home.position.z + Random.Range(-10.0f, 10.0f)));
+            }
             nav.isStopped = !isChase;
         }
     }
