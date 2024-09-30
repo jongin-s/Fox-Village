@@ -10,8 +10,8 @@ public class Enemy : MonoBehaviour
 
     public int maxHealth;
     public int curHealth;
-    public int chaseRange;
-    public int homeRange;
+    public float chaseRange;
+    public float homeRange;
     public bool isChase;
     public bool isAttack;
 
@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
     public AudioClip hitSound;
     public AudioClip deathSound;
     public HealthBar healthBar;
+
+    public delegate void EnemyDead();
+    public static event EnemyDead OnEnemyDead;
 
     Rigidbody rigid;
     BoxCollider boxCollider;
@@ -190,6 +193,8 @@ public class Enemy : MonoBehaviour
             rigid.AddForce(reactVec * 5, ForceMode.Impulse);
 
             Destroy(gameObject, 3);
+            
+            OnEnemyDead?.Invoke();
         }
     }
 }
