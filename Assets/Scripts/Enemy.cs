@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public int maxHealth;
     public int curHealth;
     public int chaseRange;
+    public int homeRange;
     public bool isChase;
     public bool isAttack;
 
@@ -57,7 +58,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                nav.SetDestination(new Vector3(home.position.x + Random.Range(-10.0f, 10.0f), home.position.y, home.position.z + Random.Range(-10.0f, 10.0f)));
+                nav.SetDestination(new Vector3(home.position.x + Random.Range(-homeRange, homeRange), home.position.y, home.position.z + Random.Range(-homeRange, homeRange)));
             }
             nav.isStopped = !isChase;
         }
