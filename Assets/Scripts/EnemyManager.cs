@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public Transform SpawnPoint;
-    public GameObject[] EnemyPrefabs;
     public int WaitTime;
-    
+    public GameObject[] EnemyPrefabs;
+
     void OnEnable()
     {
         Enemy.OnEnemyDead += SpawnNewEnemy;
