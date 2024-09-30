@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
 
     void Chase()
     {
-        if (nav.enabled)
+        if (nav.enabled && Vector3.Distance(transform.position, target.position) < 10)
         {
             nav.SetDestination(target.position);
             nav.isStopped = !isChase;
