@@ -16,12 +16,12 @@ public class Enemy : MonoBehaviour
     public bool isAttack;
 
     public Transform target;
-    public Transform home;
     public BoxCollider meleeArea;
     public AudioClip hitSound;
     public AudioClip deathSound;
     public HealthBar healthBar;
     public GameObject[] items;
+    public Vector3 initPosition;
 
     public delegate void EnemyDead();
     public static event EnemyDead OnEnemyDead;
@@ -43,6 +43,9 @@ public class Enemy : MonoBehaviour
         curHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
+        target = GameObject.FindWithTag("Player").transform;
+        initPosition = transform.position;
+
         Invoke("ChaseStart", 0);
     }
 
@@ -62,7 +65,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                nav.SetDestination(new Vector3(home.position.x + Random.Range(-homeRange, homeRange), home.position.y, home.position.z + Random.Range(-homeRange, homeRange)));
+                nav.SetDestination(new Vector3(initPosition.x + Random.Range(-homeRange, homeRange), initPosition.y, initPosition.z + Random.Range(-homeRange, homeRange)));
             }
             nav.isStopped = !isChase;
         }

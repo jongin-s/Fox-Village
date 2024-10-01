@@ -103,7 +103,7 @@ MonoBehaviour:
   maxHealth: 100
   curHealth: 0
   chaseRange: 10
-  homeRange: 0
+  homeRange: 10
   isChase: 0
   isAttack: 0
   target: {fileID: 0}
@@ -112,6 +112,10 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
   deathSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   healthBar: {fileID: 9115729350749841307}
+  items:
+  - {fileID: 5025581065286182563, guid: 466dd84e0936d25469863a6606305e39, type: 3}
+  - {fileID: 7970076024770542847, guid: ba7eff6895c37e44b8a626b8918d2814, type: 3}
+  - {fileID: 9003347600041785493, guid: 7f1e65ceaca262042b82115350cead15, type: 3}
 --- !u!195 &3548185200344888874
 NavMeshAgent:
   m_ObjectHideFlags: 0
