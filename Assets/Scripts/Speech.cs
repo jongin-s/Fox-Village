@@ -13,8 +13,7 @@ public class Speech : MonoBehaviour
 
     private void Awake()
     {
-        intButton = GameObject.Find("Canvas").GetComponent<IntButton>();
-        manager = GameObject.Find("Game Manager").GetComponent<GameManager>();  // IntButton과 GameManager 스크립트를 불러옴
+        intButton = GameObject.Find("Canvas").GetComponent<IntButton>();  // IntButton 스크립트를 불러옴
         dynamic.SetActive(false);  // 상호작용 버튼을 숨김
     }
 
@@ -43,6 +42,7 @@ public class Speech : MonoBehaviour
                 canvas[i].SetActive(true);
             }
         }
+        intButton.click = false;
     }
 
     private void OnTriggerExit(Collider other)

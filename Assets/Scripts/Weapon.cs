@@ -19,10 +19,12 @@ public class Weapon : MonoBehaviour
 
     public void Use()
     {
-        if (type == Type.Melee)
+        switch (type)
         {
-            StopCoroutine(Swing());
-            StartCoroutine(Swing());
+            case Type.Melee:
+                StopCoroutine(Swing());
+                StartCoroutine(Swing());
+                break;
         }
     }
 

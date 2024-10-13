@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 
 // Written by Steve Streeting 2017
@@ -88,7 +88,6 @@ public class Flickering : MonoBehaviour
         {
             randomPos = Random.insideUnitSphere/(1/lightPosRandomness);
             randomPos += startPosition;
-            Debug.Log(randomPos);
             TimeSinceRandomRefresh = 0.0f;
         }
         else
