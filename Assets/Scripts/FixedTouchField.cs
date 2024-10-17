@@ -5,12 +5,10 @@ public class FixedTouchField : MonoBehaviour  // 터치 포인터 핸들러를 �
 {
     [HideInInspector] public Vector2 TouchDist;  // 터치 드래그의 길이를 나타내는 2차원 벡터
     [HideInInspector] public Vector2 PointerOld;  // 처음에 터치 드래그를 시작했던 위치
-    public CinemachineFreeLook cam;
+    [HideInInspector] public CinemachineFreeLook cam;
     public Transform target;
     public float rotSensitive = 0.5f;  // 카메라 민감도
-    public float smoothSpeed = 0.125f;
     public int stretch = 630;
-    public Vector3 offset;
 
     public float h0Min = 15f;
     public float h0Max = 30f;
@@ -26,6 +24,11 @@ public class FixedTouchField : MonoBehaviour  // 터치 포인터 핸들러를 �
     public float h2Max = 6f;
     public float r2Min = 15f;
     public float r2Max = 30f;
+
+    void Start()
+    {
+        cam = GetComponent<CinemachineFreeLook>();
+    }
 
     void Update()
     {
@@ -65,13 +68,6 @@ public class FixedTouchField : MonoBehaviour  // 터치 포인터 핸들러를 �
                 }
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-        Vector3 desiredPosition = target.position + offset;
-        Vector3 smoothedPosition = Vector3.Lerp(cam.transform.position, desiredPosition, smoothSpeed);
-        cam.transform.position = smoothedPosition;
     }
 
     public void Zoom(float increment)

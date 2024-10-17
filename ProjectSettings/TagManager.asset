@@ -10,6 +10,7 @@ TagManager:
   - Melee
   - Enemy
   - EnemyAttack
+  - Shop
   layers:
   - Default
   - TransparentFX
