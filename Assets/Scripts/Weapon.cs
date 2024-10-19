@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     public int damage;
     public float rate;
 
-    public AudioClip swingSound;
+    public AudioSource swingSound;
     public BoxCollider meleeArea;
     public TrailRenderer trailEffect;
 
@@ -32,7 +32,7 @@ public class Weapon : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         trailEffect.enabled = true;
-        AudioSource.PlayClipAtPoint(swingSound, Camera.main.transform.position);
+        swingSound.Play();
 
         yield return new WaitForSeconds(0.1f);
         meleeArea.enabled = true;

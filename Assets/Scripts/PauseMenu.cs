@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject[] canvas;
     public GameObject options;
+    public GameObject text;
     GameManager manager;
 
     public void Awake()
@@ -15,6 +17,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         options.SetActive(false);
+        text.SetActive(false);
     }
 
     public void ResumeGame()
@@ -30,6 +33,8 @@ public class PauseMenu : MonoBehaviour
     public void SaveGame()
     {
         manager.Save();
+        StopCoroutine(Text());
+        StartCoroutine(Text());
     }
 
     public void Options()
@@ -40,5 +45,12 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    IEnumerator Text()
+    {
+        text.SetActive(true);
+        yield return new WaitForSeconds(2);
+        text.SetActive(false);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemCollection : MonoBehaviour
 {
 
-    public int coin;  // 현재 코인의 개수, Inspector에서 입력
+    [HideInInspector] public int coin;  // 현재 코인의 개수, Inspector에서 입력
     public int maxCoin;  // 가능한 최대 코인의 개수, 역시 Inspector에서 입력
 
     public GameManager manager;  // Game Manager로 coin을 보내주기 위해 사용
@@ -14,7 +14,10 @@ public class ItemCollection : MonoBehaviour
         if (!PlayerPrefs.HasKey("coin"))
             coin = 0;
         else
+        {
             coin = PlayerPrefs.GetInt("coin");
+            //coin = 750;
+        }
         manager.GetItem(manager.invTxt15, coin);  // coin을 Game Manager로 전달
     }
 

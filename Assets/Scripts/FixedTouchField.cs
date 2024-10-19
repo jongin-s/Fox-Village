@@ -6,7 +6,6 @@ public class FixedTouchField : MonoBehaviour  // 터치 포인터 핸들러를 �
     [HideInInspector] public Vector2 TouchDist;  // 터치 드래그의 길이를 나타내는 2차원 벡터
     [HideInInspector] public Vector2 PointerOld;  // 처음에 터치 드래그를 시작했던 위치
     [HideInInspector] public CinemachineFreeLook cam;
-    public Transform target;
     public float rotSensitive = 0.5f;  // 카메라 민감도
     public int stretch = 630;
 

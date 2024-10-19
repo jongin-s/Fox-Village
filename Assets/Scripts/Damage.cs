@@ -5,13 +5,14 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     public int maxHealth;
-    public int curHealth;
-    public bool isDamage;
-    public bool isDead;
+    [HideInInspector] public int curHealth;
+    [HideInInspector] public bool isDamage;
+    [HideInInspector] public bool isDead;
 
     public AudioClip hitSound;
     public AudioClip deathSound;
     public HealthBar healthBar;
+    public GameObject menu;
 
     Rigidbody rigid;
     MeshRenderer[] meshes;
@@ -25,6 +26,7 @@ public class Damage : MonoBehaviour
 
         curHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        menu.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -87,6 +89,7 @@ public class Damage : MonoBehaviour
             reactVec += Vector3.up;
             rigid.AddForce(reactVec * 5, ForceMode.Impulse);
             isDead = true;
+            menu.SetActive(true);
         }
     }
 }
