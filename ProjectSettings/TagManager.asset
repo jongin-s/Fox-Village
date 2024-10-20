@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - EnemyAttack
   - Shop
+  - Canvas
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ public class ItemCollection : MonoBehaviour
         else
         {
             coin = PlayerPrefs.GetInt("coin");
-            //coin = 750;
+            coin = maxCoin;
         }
         manager.GetItem(manager.invTxt15, coin);  // coin을 Game Manager로 전달
     }
@@ -40,6 +40,22 @@ public class ItemCollection : MonoBehaviour
                 case Item.Type.Gold:
                     coin += 100;
                     break;  // 그 외의 다른 타입에 대해서도 동일하게 작성
+
+                case Item.Type.Jade:
+                    coin += 25;
+                    break;
+
+                case Item.Type.Diamond:
+                    coin += 100;
+                    break;
+
+                case Item.Type.Ruby:
+                    coin += 50;
+                    break;
+
+                case Item.Type.Amethyst:
+                    coin += 50;
+                    break;
             }
         }
         if (coin > maxCoin) coin = maxCoin;  // coin이 maxCoin을 넘어가지 않도록 설정

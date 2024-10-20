@@ -248,15 +248,16 @@ MonoBehaviour:
   isChase: 0
   isAttack: 0
   target: {fileID: 0}
-  home: {fileID: 0}
   meleeArea: {fileID: 5564591505246372151}
   hitSound: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
   deathSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   healthBar: {fileID: 5611584527763428712}
   items:
-  - {fileID: 5025581065286182563, guid: 466dd84e0936d25469863a6606305e39, type: 3}
-  - {fileID: 7970076024770542847, guid: ba7eff6895c37e44b8a626b8918d2814, type: 3}
-  - {fileID: 9003347600041785493, guid: 7f1e65ceaca262042b82115350cead15, type: 3}
+  - {fileID: 3082213356803771937, guid: 14e651e2cd11d8e449dbd371cfbd01f3, type: 3}
+  - {fileID: 1579377406206096640, guid: 54f37c0ce13a71b489b2e5ed44170260, type: 3}
+  - {fileID: 8591679294560943519, guid: 9680e70ed93dd8241a2a0856c5491762, type: 3}
+  - {fileID: 3206788811588989469, guid: 2ff37efb5e7d918478621c7f2f98bcc3, type: 3}
+  initPosition: {x: 0, y: 0, z: 0}
 --- !u!195 &2423457776297028500
 NavMeshAgent:
   m_ObjectHideFlags: 0
