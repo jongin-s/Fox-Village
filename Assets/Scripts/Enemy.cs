@@ -153,7 +153,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Melee")
+        if (other.tag == "Melee")  // 무기의 태그를 반드시 "Melee"로 설정!
         {
             Weapon weapon = other.GetComponent<Weapon>();
             curHealth -= weapon.damage;
