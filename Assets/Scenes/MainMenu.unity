@@ -762,7 +762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
+  m_text: "\uC885\uB8CC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b7c3368b0ba07e64eb9b1340d59341ef, type: 2}
   m_sharedMaterial: {fileID: 5707387008490687901, guid: b7c3368b0ba07e64eb9b1340d59341ef, type: 2}
@@ -1458,8 +1458,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -24.493}
+  m_SizeDelta: {x: 0, y: 256.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &975937336
 MonoBehaviour:
@@ -1553,7 +1553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: "\uD50C\uB808\uC774"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b7c3368b0ba07e64eb9b1340d59341ef, type: 2}
   m_sharedMaterial: {fileID: 5707387008490687901, guid: b7c3368b0ba07e64eb9b1340d59341ef, type: 2}
@@ -1793,7 +1793,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Loading
+  m_text: "\uB85C\uB529\uC911"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b7c3368b0ba07e64eb9b1340d59341ef, type: 2}
   m_sharedMaterial: {fileID: 5707387008490687901, guid: b7c3368b0ba07e64eb9b1340d59341ef, type: 2}
@@ -1904,8 +1904,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -24.49353}
+  m_SizeDelta: {x: 0, y: 256.3732}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1644330665
 MonoBehaviour:
@@ -2125,7 +2125,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0}
     m_PressedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.2}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
     m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0}
