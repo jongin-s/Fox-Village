@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;  // 플레이어의 GameObject
     public TextMeshProUGUI invTxt15;  // Inventory Panel의 각 슬롯의 텍스트
+    public GameObject respawn;
     Damage damage;
 
     public void Start()
@@ -28,14 +29,18 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
-        PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
-        PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
-        PlayerPrefs.SetFloat("PlayerZ", player.transform.position.z);  // 플레이어 위치를 나타내는 실수 3개를 저장
+        //PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
+        //PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
+        //PlayerPrefs.SetFloat("PlayerZ", player.transform.position.z);  // 플레이어 위치를 나타내는 실수 3개를 저장
 
-        PlayerPrefs.SetFloat("PlayerRX", player.transform.rotation.x);
-        PlayerPrefs.SetFloat("PlayerRY", player.transform.rotation.y);
-        PlayerPrefs.SetFloat("PlayerRZ", player.transform.rotation.z);
-        PlayerPrefs.SetFloat("PlayerRW", player.transform.rotation.w);  // 플레이어 회전을 나타내는 실수 4개를 저장
+        //PlayerPrefs.SetFloat("PlayerRX", player.transform.rotation.x);
+        //PlayerPrefs.SetFloat("PlayerRY", player.transform.rotation.y);
+        //PlayerPrefs.SetFloat("PlayerRZ", player.transform.rotation.z);
+        //PlayerPrefs.SetFloat("PlayerRW", player.transform.rotation.w);  // 플레이어 회전을 나타내는 실수 4개를 저장
+
+        PlayerPrefs.SetFloat("RespawnX", respawn.transform.position.x);
+        PlayerPrefs.SetFloat("RespawnY", respawn.transform.position.y);
+        PlayerPrefs.SetFloat("RespawnZ", respawn.transform.position.z);
 
         PlayerPrefs.SetInt("HP", damage.curHealth);
 
@@ -51,19 +56,31 @@ public class GameManager : MonoBehaviour
         if (!PlayerPrefs.HasKey("Scene"))
             return;  // 최초로 실행했을 때는 키가 없으므로 즉시 종료, 아무것도 실행되지 않음
 
-        float x = PlayerPrefs.GetFloat("PlayerX");
-        float y = PlayerPrefs.GetFloat("PlayerY");
-        float z = PlayerPrefs.GetFloat("PlayerZ");  // 플레이어 위치를 나타내는 실수 3개를 불러옴
+        //float x = PlayerPrefs.GetFloat("PlayerX");
+        //float y = PlayerPrefs.GetFloat("PlayerY");
+        //float z = PlayerPrefs.GetFloat("PlayerZ");  // 플레이어 위치를 나타내는 실수 3개를 불러옴
 
-        float rx = PlayerPrefs.GetFloat("PlayerRX");
-        float ry = PlayerPrefs.GetFloat("PlayerRY");
-        float rz = PlayerPrefs.GetFloat("PlayerRZ");
-        float rw = PlayerPrefs.GetFloat("PlayerRW");  // 플레이어 회전을 나타내는 실수 4개를 불러옴
+        //float rx = PlayerPrefs.GetFloat("PlayerRX");
+        //float ry = PlayerPrefs.GetFloat("PlayerRY");
+        //float rz = PlayerPrefs.GetFloat("PlayerRZ");
+        //float rw = PlayerPrefs.GetFloat("PlayerRW");  // 플레이어 회전을 나타내는 실수 4개를 불러옴
+
+        float x = PlayerPrefs.GetFloat("RespawnX");
+        float y = PlayerPrefs.GetFloat("RespawnY");
+        float z = PlayerPrefs.GetFloat("RespawnZ");
 
         int hp = PlayerPrefs.GetInt("HP");
 
-        player.transform.position = new Vector3(x, y, z);  // 플레이어 위치를 지정
-        player.transform.rotation = new Quaternion(rx, ry, rz, rw);  // 플레이어 회전을 지정
+        if (respawn.transform.position != new Vector3(x, y, z))
+        {
+            player.transform.position = new Vector3(x, y, z);  // 플레이어 위치를 지정
+        }
+        else
+        {
+            player.transform.position = respawn.transform.position;
+        }
+
+        //player.transform.rotation = new Quaternion(rx, ry, rz, rw);  // 플레이어 회전을 지정
         damage.curHealth = hp;
 
         Debug.Log("Load Successful" + " " + PlayerPrefs.GetInt("Scene"));

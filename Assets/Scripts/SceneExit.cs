@@ -27,6 +27,7 @@ public class SceneExit : MonoBehaviour
         {
             LoadScene();
             intButton.click = false;
+            Debug.Log("Teleport");
         }
     }
 
