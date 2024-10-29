@@ -18,7 +18,7 @@ public class ItemCollection : MonoBehaviour
             coin = PlayerPrefs.GetInt("coin");
             coin = maxCoin;
         }
-        manager.GetItem(manager.invTxt15, coin);  // coin을 Game Manager로 전달
+        manager.GetItem(manager.invTxt0, coin);  // coin을 Game Manager로 전달
     }
 
     void OnTriggerEnter(Collider other)  // 아이템의 Trigger Collider가 작동했을 때
@@ -60,6 +60,6 @@ public class ItemCollection : MonoBehaviour
         }
         if (coin > maxCoin) coin = maxCoin;  // coin이 maxCoin을 넘어가지 않도록 설정
         PlayerPrefs.SetInt("coin", coin);
-        manager.GetItem(manager.invTxt15, coin);  // coin을 Game Manager로 전달
+        manager.GetItem(manager.invTxt0, coin);  // coin을 Game Manager로 전달
     }
 }
