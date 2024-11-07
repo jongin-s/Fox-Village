@@ -218,7 +218,15 @@ PrefabInstance:
       propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2421015551448755630, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
+    - {fileID: 191454462815407550, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
+    - {fileID: 1109289963491565235, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
+    - {fileID: 8261202242586799966, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
+    - {fileID: 2619287659045565838, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
+    - {fileID: 7599012430267136298, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
+    - {fileID: 4626825258323368357, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
+    - {fileID: 8786884100935037222, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
     m_RemovedGameObjects:
     - {fileID: 472906810154605079, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
     - {fileID: 9192255133494398875, guid: 36610a1b2430b2341816f9e2f1ca658b, type: 3}
