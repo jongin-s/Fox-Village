@@ -1,12 +1,12 @@
 using UnityEngine;
 using Cinemachine;
 
-public class FixedTouchField : MonoBehaviour  // 터치 포인터 핸들러를 가져와야 함
+public class FixedTouchField : MonoBehaviour
 {
-    [HideInInspector] public Vector2 TouchDist;  // 터치 드래그의 길이를 나타내는 2차원 벡터
-    [HideInInspector] public Vector2 PointerOld;  // 처음에 터치 드래그를 시작했던 위치
+    [HideInInspector] public Vector2 TouchDist;  
+    [HideInInspector] public Vector2 PointerOld;  
     [HideInInspector] public CinemachineFreeLook cam;
-    public float rotSensitive = 0.5f;  // 카메라 민감도
+    public float rotSensitive = 0.5f;  
     public int stretch = 630;
 
     public float h0Min = 15f;
@@ -29,53 +29,52 @@ public class FixedTouchField : MonoBehaviour  // 터치 포인터 핸들러를 �
         cam = GetComponent<CinemachineFreeLook>();
     }
 
-    void Update()
+void Update()
+{
+    if (Input.touchCount == 0)
     {
-        if (Input.touchCount == 0)
+        TouchDist = Vector2.zero;
+    }
+    else if (Input.touchCount >= 1)
+    {
+        // 지정된 카메라 이동 구역 내에 있는 터치를 찾기
+        TouchDist = Vector2.zero; // 불필요한 이동을 방지하기 위해 초기화
+
+        foreach (Touch touch in Input.touches)
         {
-            TouchDist = new Vector2();
-        }
-        if (Input.touchCount > 0)
-        {
-            if (Input.touches[0].rawPosition.x >= stretch && Input.touches[0].rawPosition.x < Screen.width - stretch)
+            if (touch.position.x >= stretch && touch.position.x < Screen.width - stretch)
             {
-                if (Input.touchCount == 1)
-                {
-                    TouchDist = Input.touches[0].deltaPosition;
-
-                    cam.m_XAxis.Value += TouchDist.x * rotSensitive * Time.deltaTime * 45;
-                    cam.m_YAxis.Value += TouchDist.y * rotSensitive * Time.deltaTime;  // Cinemachine 프리룩 카메라의 x축 값은 -180<=x<=180인 반면, y축 값은 0<=y<=1이기 때문에 같은 길이라도 touchField 위의 움직임은 x축 움직임에 큰 값을 곱해서 카메라 x축이 더 많이 움직이기 해야 함
-                }
-                else if (Input.touchCount >= 2)
-                {
-                    Vector2 TouchDist0 = Input.touches[0].position;
-                    Vector2 PointerOld0 = Input.touches[0].rawPosition;  // TouchDist는 원래 포지션 PointerOld와 새 포지션 사이의 거리 벡터
-
-                    Vector2 TouchDist1 = Input.touches[1].position;
-                    Vector2 PointerOld1 = Input.touches[1].rawPosition;  // TouchDist는 원래 포지션 PointerOld와 새 포지션 사이의 거리 벡터
-
-                    TouchDist = (TouchDist0 - TouchDist1);
-                    PointerOld = (PointerOld0 - PointerOld1);
-
-                    float difference = TouchDist.magnitude - PointerOld.magnitude;
-                    Zoom(difference * Time.deltaTime * 0.1f);
-                }
-                else
-                {
-                    TouchDist = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - PointerOld;
-                    PointerOld = Input.mousePosition;  // 포인터를 처음 생성할 때 실행
-                }
+                TouchDist = touch.deltaPosition;
+                
+                // X축 회전은 그대로 두고, Y축 회전은 반대 방향으로 적용
+                cam.m_XAxis.Value += TouchDist.x * rotSensitive * Time.deltaTime * 45;
+                cam.m_YAxis.Value -= TouchDist.y * rotSensitive * Time.deltaTime;
+                break; // 첫 번째 유효한 터치만 처리하여 이동
             }
         }
-    }
 
-    public void Zoom(float increment)
-    {
-        cam.m_Orbits[0].m_Height = Mathf.Clamp(cam.m_Orbits[0].m_Height - increment, h0Min, h0Max);
-        cam.m_Orbits[0].m_Radius = Mathf.Clamp(cam.m_Orbits[0].m_Radius - increment, r0Min, r0Max);
-        cam.m_Orbits[1].m_Height = Mathf.Clamp(cam.m_Orbits[1].m_Height - increment, h1Min, h1Max);
-        cam.m_Orbits[1].m_Radius = Mathf.Clamp(cam.m_Orbits[1].m_Radius - increment, r1Min, r1Max);
-        cam.m_Orbits[2].m_Height = Mathf.Clamp(cam.m_Orbits[2].m_Height - increment, h2Min, h2Max);
-        cam.m_Orbits[2].m_Radius = Mathf.Clamp(cam.m_Orbits[2].m_Radius - increment, r2Min, r2Max);
+        if (Input.touchCount == 2)
+        {
+            // 두 손가락의 터치 간 거리 차이를 계산하여 줌
+            Vector2 touch0PrevPos = Input.touches[0].position - Input.touches[0].deltaPosition;
+            Vector2 touch1PrevPos = Input.touches[1].position - Input.touches[1].deltaPosition;
+
+            float prevTouchDeltaMag = (touch0PrevPos - touch1PrevPos).magnitude;
+            float currentTouchDeltaMag = (Input.touches[0].position - Input.touches[1].position).magnitude;
+            float zoomDifference = currentTouchDeltaMag - prevTouchDeltaMag;
+
+            Zoom(zoomDifference * Time.deltaTime * 0.1f); // 줌 인/아웃을 위한 작은 비율 적용
+        }
     }
+}
+
+public void Zoom(float increment)
+{
+    cam.m_Orbits[0].m_Height = Mathf.Clamp(cam.m_Orbits[0].m_Height - increment, h0Min, h0Max);
+    cam.m_Orbits[0].m_Radius = Mathf.Clamp(cam.m_Orbits[0].m_Radius - increment, r0Min, r0Max);
+    cam.m_Orbits[1].m_Height = Mathf.Clamp(cam.m_Orbits[1].m_Height - increment, h1Min, h1Max);
+    cam.m_Orbits[1].m_Radius = Mathf.Clamp(cam.m_Orbits[1].m_Radius - increment, r1Min, r1Max);
+    cam.m_Orbits[2].m_Height = Mathf.Clamp(cam.m_Orbits[2].m_Height - increment, h2Min, h2Max);
+    cam.m_Orbits[2].m_Radius = Mathf.Clamp(cam.m_Orbits[2].m_Radius - increment, r2Min, r2Max);
+}
 }
