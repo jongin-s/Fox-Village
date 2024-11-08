@@ -16,7 +16,7 @@ public class ItemCollection : MonoBehaviour
         else
         {
             coin = PlayerPrefs.GetInt("coin");
-            coin = maxCoin;
+            //coin = maxCoin;
         }
         manager.GetItem(manager.invTxt0, coin);  // coin을 Game Manager로 전달
     }

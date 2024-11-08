@@ -6,6 +6,7 @@ public class Attack : MonoBehaviour
     AttackButton attackButton;
     Weapon weapon;
     Damage damage;
+    WeaponSwitch weaponSwitch;
 
     bool isAtkReady;
     float atkDelay;
@@ -14,7 +15,7 @@ public class Attack : MonoBehaviour
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
-        weapon = GetComponentInChildren<Weapon>();
+        weaponSwitch = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponSwitch>();
         attackButton = GameObject.Find("Canvas").GetComponent<AttackButton>();
         damage = GetComponent<Damage>();
     }
@@ -22,19 +23,26 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (weaponSwitch.equipWeapon != null)
+        {
+            weapon = weaponSwitch.equipWeapon.GetComponentInChildren<Weapon>();
+        }
         Atk();
     }
 
     void Atk()
     {
         atkDelay += Time.deltaTime;
-        isAtkReady = weapon.rate < atkDelay;
-
-        if (attackButton.click && isAtkReady && !damage.isDead)
+        if (weapon != null)
         {
-            weapon.Use();
-            anim.SetTrigger("doSwing");
-            atkDelay = 0;
+            isAtkReady = weapon.rate < atkDelay;
+
+            if (attackButton.click && isAtkReady && !damage.isDead)
+            {
+                weapon.Use();
+                anim.SetTrigger("doSwing");
+                atkDelay = 0;
+            }
         }
     }
 }

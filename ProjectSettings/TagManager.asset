@@ -12,6 +12,7 @@ TagManager:
   - EnemyAttack
   - Shop
   - Canvas
+  - Weapon
   layers:
   - Default
   - TransparentFX

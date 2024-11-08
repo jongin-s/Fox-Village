@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum Type {Gold, Silver, Bronze, Jade, Diamond, Ruby, Amethyst}  // Type의 열거형, 각 아이템의 이름을 나열하고 아이템별로 Inspector에서 설정
+    public enum Type {Gold, Silver, Bronze, Jade, Diamond, Ruby, Amethyst, Weapon}  // Type의 열거형, 각 아이템의 이름을 나열하고 아이템별로 Inspector에서 설정
     public Type type;  // Type의 일반형, 각 아이템의 이름을 불러올 때 사용
     public AudioClip sound;  // 각 아이템별로 원하는 클립을 Inspector에서 드래그
+    public int value;
 
     void OnTriggerEnter(Collider other)  // 아이템의 Trigger Collider가 작동했을 때
     {
