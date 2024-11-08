@@ -1951,6 +1951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Screen: {fileID: 0}
   LoadingBarFill: {fileID: 0}
+  respawn: {fileID: 0}
 --- !u!1 &9031376532239624846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,6 +2060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sword_01_A
       objectReference: {fileID: 0}
+    - target: {fileID: 2122526488912554002, guid: d1cac1524dd36334f88e5cc8f1168298, type: 3}
+      propertyPath: m_TagString
+      value: Melee
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -2100,7 +2105,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
-  m_Center: {x: -1, y: 2, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1001 &5830128324600742096
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2128,6 +2133,10 @@ PrefabInstance:
     - target: {fileID: 8604138377767652756, guid: bacf157bc18941543b7e3e70dc052a12, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604138377767652756, guid: bacf157bc18941543b7e3e70dc052a12, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 8945233975116683054, guid: bacf157bc18941543b7e3e70dc052a12, type: 3}
       propertyPath: m_LocalScale.x
@@ -2217,7 +2226,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
-  m_Center: {x: -1, y: 2, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!4 &3227704595141662718 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8945233975116683054, guid: bacf157bc18941543b7e3e70dc052a12, type: 3}
@@ -2242,6 +2251,10 @@ PrefabInstance:
     - target: {fileID: 358509256593002081, guid: 7da135027dc49984d98eb8e5c348f199, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 358509256593002081, guid: 7da135027dc49984d98eb8e5c348f199, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 1131105993155548379, guid: 7da135027dc49984d98eb8e5c348f199, type: 3}
       propertyPath: m_LocalScale.x
@@ -2339,7 +2352,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
-  m_Center: {x: -1, y: 2, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!4 &6676752029082187224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1131105993155548379, guid: 7da135027dc49984d98eb8e5c348f199, type: 3}
@@ -2364,6 +2377,10 @@ PrefabInstance:
     - target: {fileID: 8289088097465984370, guid: bcc5176ae7dc7ba4c804bc4dccee13c2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289088097465984370, guid: bcc5176ae7dc7ba4c804bc4dccee13c2, type: 3}
+      propertyPath: m_TagString
+      value: Melee
       objectReference: {fileID: 0}
     - target: {fileID: 8665788909542752200, guid: bcc5176ae7dc7ba4c804bc4dccee13c2, type: 3}
       propertyPath: m_LocalScale.x
@@ -2466,4 +2483,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 2}
-  m_Center: {x: -1, y: 2, z: 1}
+  m_Center: {x: 0, y: 2, z: 0}
