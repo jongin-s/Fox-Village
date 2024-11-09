@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
 
     public delegate void EnemyDead();
     public static event EnemyDead OnEnemyDead;
+    public GameObject deathParticleEffect;
+
 
     Rigidbody rigid;
     BoxCollider boxCollider;
@@ -167,40 +169,47 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator OnDamage(Vector3 reactVec)
+IEnumerator OnDamage(Vector3 reactVec)
+{
+    mat.color = Color.red;
+    AudioSource.PlayClipAtPoint(hitSound, Camera.main.transform.position);
+
+    reactVec = reactVec.normalized;
+    reactVec += Vector3.up;
+    rigid.AddForce(reactVec * 2.5f, ForceMode.Impulse);
+
+    yield return new WaitForSeconds(0.1f);
+
+    if (curHealth > 0)
     {
-        mat.color = Color.red;
-        AudioSource.PlayClipAtPoint(hitSound, Camera.main.transform.position);
+        mat.color = Color.white;
+    }
+    else
+    {
+        mat.color = Color.blue;
+        AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
+        gameObject.layer = 9;
+
+        isChase = false;
+        nav.enabled = false;
+        anim.SetTrigger("doDie");
 
         reactVec = reactVec.normalized;
         reactVec += Vector3.up;
-        rigid.AddForce(reactVec * 2.5f, ForceMode.Impulse);
+        rigid.AddForce(reactVec * 5, ForceMode.Impulse);
 
-        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject, 0.5f);
 
-        if (curHealth > 0)
-        {
-            mat.color = Color.white;
-        }
-        else
-        {
-            mat.color = Color.blue;
-            AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
-            gameObject.layer = 9;
+        // 파티클 효과 생성
+        GameObject particle = Instantiate(deathParticleEffect, transform.position, Quaternion.identity);
+        particle.transform.localScale = new Vector3(5, 5, 5);
+        // 일정 시간이 지난 후 파티클을 파괴
+        Destroy(particle, 2.0f);  // 2초 후 파티클 파괴
 
-            isChase = false;
-            nav.enabled = false;
-            anim.SetTrigger("doDie");
-
-            reactVec = reactVec.normalized;
-            reactVec += Vector3.up;
-            rigid.AddForce(reactVec * 5, ForceMode.Impulse);
-
-            Destroy(gameObject, 3);
-
-            Instantiate(items[Random.Range(0, items.Length)], transform.position, Quaternion.identity);
-            
-            OnEnemyDead?.Invoke();
-        }
+        Instantiate(items[Random.Range(0, items.Length)], transform.position, Quaternion.identity);
+        
+        OnEnemyDead?.Invoke();
     }
+}
+
 }

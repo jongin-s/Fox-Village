@@ -258,6 +258,7 @@ MonoBehaviour:
   - {fileID: 8591679294560943519, guid: 9680e70ed93dd8241a2a0856c5491762, type: 3}
   - {fileID: 3206788811588989469, guid: 2ff37efb5e7d918478621c7f2f98bcc3, type: 3}
   initPosition: {x: 0, y: 0, z: 0}
+  deathParticleEffect: {fileID: 6184408002500343489, guid: c779b443ba62cf442ba58b6e69f77b15, type: 3}
 --- !u!195 &2423457776297028500
 NavMeshAgent:
   m_ObjectHideFlags: 0
