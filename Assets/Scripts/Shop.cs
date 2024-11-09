@@ -13,6 +13,7 @@ public class Shop : MonoBehaviour
 
     public GameObject[] weapon;
     public int[] itemPrice;
+    public Transform itemPos;
     public GameObject[] text;
 
     private void OnTriggerEnter(Collider other)
@@ -51,7 +52,7 @@ public class Shop : MonoBehaviour
             StopCoroutine(Talk(2));
             StartCoroutine(Talk(2));
             item.coin -= price;
-            swap.weapons[index] = weapon[index];
+            Instantiate(weapon[index], itemPos.position, itemPos.rotation);
         }
     }
 

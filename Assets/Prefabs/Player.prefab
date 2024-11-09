@@ -75,7 +75,7 @@ TrailRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Time: 0.1
-  m_PreviewTimeScale: 1
+  m_PreviewTimeScale: 0
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -355,6 +355,7 @@ MonoBehaviour:
   speed: 15
   jumpPower: 15
   cam: {fileID: 0}
+  footstep: {fileID: 0}
 --- !u!114 &3336428241936883393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +401,8 @@ MonoBehaviour:
   isDead: 0
   hitSound: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
   deathSound: {fileID: 8300000, guid: dc6614beca09347ec9b258f12d154bdd, type: 3}
+  healthBar: {fileID: 0}
+  menu: {fileID: 0}
 --- !u!1001 &365168764792953279
 PrefabInstance:
   m_ObjectHideFlags: 0

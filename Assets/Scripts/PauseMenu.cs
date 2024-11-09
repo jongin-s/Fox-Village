@@ -27,6 +27,7 @@ public class PauseMenu : MonoBehaviour
             canvas[i].SetActive(true);
         }
         gameObject.SetActive(false);
+        text.SetActive(false);
         Time.timeScale = 1f;
     }
 
@@ -50,7 +51,7 @@ public class PauseMenu : MonoBehaviour
     IEnumerator Text()
     {
         text.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2f);
         text.SetActive(false);
     }
 }

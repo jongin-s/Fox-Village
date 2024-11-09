@@ -7,12 +7,15 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;  // 플레이어의 GameObject
     public TextMeshProUGUI invTxt0;  // Inventory Panel의 각 슬롯의 텍스트
+    public Image[] weaponImage;
     public GameObject respawn;
     Damage damage;
+    WeaponSwitch weaponSwitch;
 
     public void Start()
     {
         damage = player.GetComponent<Damage>();
+        weaponSwitch = player.GetComponent<WeaponSwitch>();
         Load();  // 이 스크립트가 처음으로 실행될 때 같이 실행
         Application.targetFrameRate = 24;  // 목표 FPS
     }
@@ -20,6 +23,14 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         invTxt0 = GameObject.Find("Jewel").GetComponentInChildren<TextMeshProUGUI>();  // 구체적인 슬롯 이름에서 자식의 컴포넌트를 가져오지 않으면 다른 "Text (TMP)" 오브젝트가 업데이트됨
+    }
+
+    private void Update()
+    {
+        weaponImage[0].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[0] ? 1 : 0);
+        weaponImage[1].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[1] ? 1 : 0);
+        weaponImage[2].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[2] ? 1 : 0);
+        weaponImage[3].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[3] ? 1 : 0);
     }
 
     public void GetItem(TextMeshProUGUI invTxt, int count)
@@ -45,6 +56,11 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("HP", damage.curHealth);
 
         PlayerPrefs.SetInt("Scene", SceneManager.GetActiveScene().buildIndex);
+
+        PlayerPrefs.SetInt("Weapon1", weaponSwitch.hasWeapons[0] ? 1 : 0);
+        PlayerPrefs.SetInt("Weapon2", weaponSwitch.hasWeapons[1] ? 1 : 0);
+        PlayerPrefs.SetInt("Weapon3", weaponSwitch.hasWeapons[2] ? 1 : 0);
+        PlayerPrefs.SetInt("Weapon4", weaponSwitch.hasWeapons[3] ? 1 : 0);
 
         PlayerPrefs.Save();
 
@@ -82,6 +98,11 @@ public class GameManager : MonoBehaviour
 
         //player.transform.rotation = new Quaternion(rx, ry, rz, rw);  // 플레이어 회전을 지정
         damage.curHealth = hp;
+
+        weaponSwitch.hasWeapons[0] = PlayerPrefs.GetInt("Weapon1") != 0;
+        weaponSwitch.hasWeapons[1] = PlayerPrefs.GetInt("Weapon2") != 0;
+        weaponSwitch.hasWeapons[2] = PlayerPrefs.GetInt("Weapon3") != 0;
+        weaponSwitch.hasWeapons[3] = PlayerPrefs.GetInt("Weapon4") != 0;
 
         Debug.Log("Load Successful" + " " + PlayerPrefs.GetInt("Scene"));
     }

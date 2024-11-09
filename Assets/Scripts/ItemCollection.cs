@@ -9,8 +9,12 @@ public class ItemCollection : MonoBehaviour
 
     public GameManager manager;  // Game Manager로 coin을 보내주기 위해 사용
 
+    WeaponSwitch weaponSwitch;
+
     private void Awake()
     {
+        weaponSwitch = GetComponent<WeaponSwitch>();
+
         if (!PlayerPrefs.HasKey("coin"))
             coin = 0;
         else
@@ -55,6 +59,10 @@ public class ItemCollection : MonoBehaviour
 
                 case Item.Type.Amethyst:
                     coin += 50;
+                    break;
+
+                case Item.Type.Weapon:
+                    weaponSwitch.hasWeapons[item.value] = true;
                     break;
             }
         }
