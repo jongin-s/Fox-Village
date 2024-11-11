@@ -57,9 +57,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179594357458979182}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.90265167, y: 0.16081189, z: -0.18415372, w: 0.3541848}
-  m_LocalPosition: {x: 168.04454, y: 646.00964, z: 94.60741}
-  m_LocalScale: {x: 0.53333336, y: 0.5333332, z: 0.5333333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3910198863293569197}
@@ -321,9 +321,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858346773678216416}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.9026518, y: 0.16081189, z: -0.18415374, w: 0.3541848}
-  m_LocalPosition: {x: 168.04454, y: 646.00964, z: 94.60741}
-  m_LocalScale: {x: 0.53333336, y: 0.5333332, z: 0.5333333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6950310778115815832}
@@ -663,9 +663,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3524120102944725132}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.90265167, y: 0.16081189, z: -0.18415372, w: 0.3541848}
-  m_LocalPosition: {x: 168.04454, y: 646.00964, z: 94.60741}
-  m_LocalScale: {x: 0.53333336, y: 0.5333332, z: 0.5333333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3985100241083779663}
@@ -1560,9 +1560,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8562226714035095582}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.90265167, y: 0.16081189, z: -0.18415372, w: 0.3541848}
-  m_LocalPosition: {x: 168.04454, y: 646.00964, z: 94.60741}
-  m_LocalScale: {x: 0.53333336, y: 0.5333332, z: 0.5333333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 963523104230145041}
@@ -1994,9 +1994,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8435539783477687005}
     m_Modifications:
+    - target: {fileID: 1644810636589842180, guid: f5eb0ce58c5463440b77a4059ad10d2c, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2771718180408077795, guid: f5eb0ce58c5463440b77a4059ad10d2c, type: 3}
       propertyPath: m_Name
       value: Sword3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2771718180408077795, guid: f5eb0ce58c5463440b77a4059ad10d2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2771718180408077795, guid: f5eb0ce58c5463440b77a4059ad10d2c, type: 3}
       propertyPath: m_TagString
@@ -2088,7 +2096,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2125,6 +2133,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8435539783477687005}
     m_Modifications:
+    - target: {fileID: 6004222116041693975, guid: cba8ef365528a1149880e3f009832da1, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8344270066130260672, guid: cba8ef365528a1149880e3f009832da1, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -2182,6 +2194,10 @@ PrefabInstance:
       value: Sword4
       objectReference: {fileID: 0}
     - target: {fileID: 8684943146056861818, guid: cba8ef365528a1149880e3f009832da1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8684943146056861818, guid: cba8ef365528a1149880e3f009832da1, type: 3}
       propertyPath: m_TagString
       value: Melee
       objectReference: {fileID: 0}
@@ -2224,7 +2240,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2313,8 +2329,16 @@ PrefabInstance:
       value: Sword2
       objectReference: {fileID: 0}
     - target: {fileID: 8853856172880936611, guid: da7e3ab4319991f479214f3630caa0e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853856172880936611, guid: da7e3ab4319991f479214f3630caa0e7, type: 3}
       propertyPath: m_TagString
       value: Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 9217690675312694061, guid: da7e3ab4319991f479214f3630caa0e7, type: 3}
+      propertyPath: m_Convex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2355,7 +2379,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2387,6 +2411,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8435539783477687005}
     m_Modifications:
+    - target: {fileID: -1510144559892292382, guid: 70c6b5b29555ac04ba2c9cf36c0197dc, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1603116764194747048, guid: 70c6b5b29555ac04ba2c9cf36c0197dc, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -2444,6 +2472,10 @@ PrefabInstance:
       value: Sword1
       objectReference: {fileID: 0}
     - target: {fileID: 2122526488912554002, guid: 70c6b5b29555ac04ba2c9cf36c0197dc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122526488912554002, guid: 70c6b5b29555ac04ba2c9cf36c0197dc, type: 3}
       propertyPath: m_TagString
       value: Melee
       objectReference: {fileID: 0}
@@ -2486,7 +2518,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

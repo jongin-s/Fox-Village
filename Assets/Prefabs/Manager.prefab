@@ -890,7 +890,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  invTxt15: {fileID: 0}
+  invTxt0: {fileID: 0}
+  weaponImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  respawn: {fileID: 0}
 --- !u!1 &8953548042863174443
 GameObject:
   m_ObjectHideFlags: 0
