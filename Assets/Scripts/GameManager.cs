@@ -106,4 +106,9 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Load Successful" + " " + PlayerPrefs.GetInt("Scene"));
     }
+
+    private void OnApplicationQuit()
+    {
+        Save();
+    }
 }
