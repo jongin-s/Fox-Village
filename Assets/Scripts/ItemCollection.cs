@@ -4,25 +4,31 @@ using UnityEngine;
 public class ItemCollection : MonoBehaviour
 {
 
-    [HideInInspector] public int coin;  // 현재 코인의 개수, Inspector에서 입력
-    public int maxCoin;  // 가능한 최대 코인의 개수, 역시 Inspector에서 입력
+    [HideInInspector] public int coin;  // 현재 푸른 보석의 개수, Inspector에서 숨김
+    public int maxCoin;  // 가능한 최대 푸른 보석의 개수, Inspector에서 입력
+    [HideInInspector] public int coin2;  // 현재 붉은 보석의 개수, Inspector에서 숨김
+    public int maxCoin2;  // 가능한 최대 붉은 보석의 개수, Inspector에서 입력
 
     public GameManager manager;  // Game Manager로 coin을 보내주기 위해 사용
 
     WeaponSwitch weaponSwitch;
 
-    private void Awake()
+    private void Start()
     {
         weaponSwitch = GetComponent<WeaponSwitch>();
 
-        if (!PlayerPrefs.HasKey("coin"))
+        if (!PlayerPrefs.HasKey("coin") || !PlayerPrefs.HasKey("coin2"))
+        {
             coin = 0;
+            coin2 = 0;
+        }
         else
         {
             coin = PlayerPrefs.GetInt("coin");
-            //coin = 0;  // 이 부분에서 코인 개수를 임의로 지정
+            coin2 = PlayerPrefs.GetInt("coin2");
         }
-        manager.GetItem(manager.invTxt0, coin);  // coin을 Game Manager로 전달
+        manager.GetItem(manager.invTxt0, coin);
+        manager.GetItem(manager.invTxt1, coin2);  // coin을 Game Manager로 전달
     }
 
     void OnTriggerEnter(Collider other)  // 아이템의 Trigger Collider가 작동했을 때
@@ -66,8 +72,11 @@ public class ItemCollection : MonoBehaviour
                     break;
             }
         }
-        if (coin > maxCoin) coin = maxCoin;  // coin이 maxCoin을 넘어가지 않도록 설정
+        if (coin > maxCoin) coin = maxCoin;
+        if (coin2 > maxCoin2) coin2 = maxCoin2;  // coin이 maxCoin을 넘어가지 않도록 설정
         PlayerPrefs.SetInt("coin", coin);
-        manager.GetItem(manager.invTxt0, coin);  // coin을 Game Manager로 전달
+        PlayerPrefs.SetInt("coin2", coin2);
+        manager.GetItem(manager.invTxt0, coin);
+        manager.GetItem(manager.invTxt1, coin2);  // coin을 Game Manager로 전달
     }
 }

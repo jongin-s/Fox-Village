@@ -34,7 +34,7 @@ public class Shop : MonoBehaviour
         if (other.tag == "Player")
         {
             script.enabled = true;
-            uiGroup.anchoredPosition = Vector3.down * 1000;
+            uiGroup.anchoredPosition = Vector3.down * 2000;
         }
     }
 
