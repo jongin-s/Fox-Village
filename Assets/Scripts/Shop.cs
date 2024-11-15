@@ -13,6 +13,7 @@ public class Shop : MonoBehaviour
 
     public GameObject[] weapon;
     public int[] itemPrice;
+    public int[] itemType;
     public Transform itemPos;
     public GameObject[] text;
 
@@ -41,18 +42,37 @@ public class Shop : MonoBehaviour
     public void Buy(int index)
     {
         int price = itemPrice[index];
-        if (price > item.coin)
+        if (itemType[index] == 0)
         {
-            StopCoroutine(Talk(1));
-            StartCoroutine(Talk(1));
-            return;
+            if (price > item.coin)
+            {
+                StopCoroutine(Talk(1));
+                StartCoroutine(Talk(1));
+                return;
+            }
+            else
+            {
+                StopCoroutine(Talk(2));
+                StartCoroutine(Talk(2));
+                item.coin -= price;
+                Instantiate(weapon[index], itemPos.position, itemPos.rotation);
+            }
         }
-        else
+        if (itemType[index] == 1)
         {
-            StopCoroutine(Talk(2));
-            StartCoroutine(Talk(2));
-            item.coin -= price;
-            Instantiate(weapon[index], itemPos.position, itemPos.rotation);
+            if (price > item.coin2)
+            {
+                StopCoroutine(Talk(1));
+                StartCoroutine(Talk(1));
+                return;
+            }
+            else
+            {
+                StopCoroutine(Talk(2));
+                StartCoroutine(Talk(2));
+                item.coin2 -= price;
+                Instantiate(weapon[index], itemPos.position, itemPos.rotation);
+            }
         }
     }
 

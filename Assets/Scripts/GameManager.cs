@@ -6,17 +6,17 @@ using TMPro;  // TMP 기능을 사용하기 위해 반드시 임포트
 public class GameManager : MonoBehaviour
 {
     public GameObject player;  // 플레이어의 GameObject
-    public TextMeshProUGUI invTxt0;
-    public TextMeshProUGUI invTxt1;
-    public Image[] weaponImage;
-    public GameObject respawn;
-    Damage damage;
-    WeaponSwitch weaponSwitch;
+    public TextMeshProUGUI invTxt0;  // 푸른 보석의 UI 텍스트
+    public TextMeshProUGUI invTxt1;  // 붉은 보석의 UI 텍스트
+    public Image[] weaponImage;  // 무기 교체 UI에 표시될 무기 사진
+    public GameObject respawn;  // 플레이어가 처음으로 맵에 등장할 때 위치, 이상은 모두 인스펙터에서 설정
+    Damage damage;  // 대미지 컴포넌트
+    WeaponSwitch weaponSwitch;  // 무기 교체 컴포넌트, 이 두 컴포넌트는 플레이어 오브젝트에서 가져옴
 
     public void Start()
     {
         damage = player.GetComponent<Damage>();
-        weaponSwitch = player.GetComponent<WeaponSwitch>();
+        weaponSwitch = player.GetComponent<WeaponSwitch>();  // 컴포넌트를 가져옴
         Load();  // 이 스크립트가 처음으로 실행될 때 같이 실행
         Application.targetFrameRate = 24;  // 목표 FPS
     }
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         invTxt0 = GameObject.Find("Jewel").GetComponentInChildren<TextMeshProUGUI>();
-        invTxt1 = GameObject.Find("Jewel2").GetComponentInChildren<TextMeshProUGUI>();  // 구체적인 슬롯 이름에서 자식의 컴포넌트를 가져오지 않으면 다른 "Text (TMP)" 오브젝트가 업데이트됨
+        invTxt1 = GameObject.Find("Jewel2").GetComponentInChildren<TextMeshProUGUI>();  // 구체적인 슬롯 이름에서 자식의 컴포넌트를 가져오지 않으면 다른 오브젝트가 업데이트됨
     }
 
     private void Update()
@@ -32,10 +32,10 @@ public class GameManager : MonoBehaviour
         weaponImage[0].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[0] ? 1 : 0);
         weaponImage[1].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[1] ? 1 : 0);
         weaponImage[2].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[2] ? 1 : 0);
-        weaponImage[3].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[3] ? 1 : 0);
+        weaponImage[3].color = new Color(1, 1, 1, weaponSwitch.hasWeapons[3] ? 1 : 0);  // 무기를 소유하고 있다면 무기 사진을 표시, 그렇지 않다면 투명화
     }
 
-    public void GetItem(TextMeshProUGUI invTxt, int count)
+    public void GetItem(TextMeshProUGUI invTxt, int count)  // 텍스트를 업데이트하는 함수, ItemCollection.cs에서 사용
     {
         invTxt.text = $"{count}";  // $"{count}": 문자열 내에서 변수를 그대로 출력하는 문법
     }
@@ -44,20 +44,20 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("RespawnX", respawn.transform.position.x);
         PlayerPrefs.SetFloat("RespawnY", respawn.transform.position.y);
-        PlayerPrefs.SetFloat("RespawnZ", respawn.transform.position.z);
+        PlayerPrefs.SetFloat("RespawnZ", respawn.transform.position.z);  // 현재 맵의 리스폰 위치를 저장
 
-        PlayerPrefs.SetInt("HP", damage.curHealth);
+        PlayerPrefs.SetInt("HP", damage.curHealth);  // 현재 HP를 저장
 
-        PlayerPrefs.SetInt("Scene", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("Scene", SceneManager.GetActiveScene().buildIndex);  // 현재 씬 번호를 저장
 
         PlayerPrefs.SetInt("Weapon1", weaponSwitch.hasWeapons[0] ? 1 : 0);
         PlayerPrefs.SetInt("Weapon2", weaponSwitch.hasWeapons[1] ? 1 : 0);
         PlayerPrefs.SetInt("Weapon3", weaponSwitch.hasWeapons[2] ? 1 : 0);
-        PlayerPrefs.SetInt("Weapon4", weaponSwitch.hasWeapons[3] ? 1 : 0);
+        PlayerPrefs.SetInt("Weapon4", weaponSwitch.hasWeapons[3] ? 1 : 0);  // 무기 소유 여부를 저장, 불리언은 저장할 수 없으므로 대신 1과 0의 정수로 저장
 
-        PlayerPrefs.Save();
+        PlayerPrefs.Save();  // 최종 저장
 
-        Debug.Log("Save Successful" + " " + PlayerPrefs.GetInt("Scene"));
+        Debug.Log("Save Successful" + " " + PlayerPrefs.GetInt("Scene"));  // 디버그용 로그
     }
 
     public void Load()
@@ -67,32 +67,31 @@ public class GameManager : MonoBehaviour
 
         float x = PlayerPrefs.GetFloat("RespawnX");
         float y = PlayerPrefs.GetFloat("RespawnY");
-        float z = PlayerPrefs.GetFloat("RespawnZ");
+        float z = PlayerPrefs.GetFloat("RespawnZ");  // 저장한 위치 벡터를 불러옴, 씬 번호는 LoadingScreen.cs에서 관리
 
-        int hp = PlayerPrefs.GetInt("HP");
+        int hp = PlayerPrefs.GetInt("HP");  // 저장한 HP를 불러옴
 
-        if (respawn.transform.position != new Vector3(x, y, z))
+        if (respawn.transform.position != new Vector3(x, y, z))  // 리스폰 위치가 저장한 위치가 아니라면 (마지막으로 다른 씬에서 저장했다면)
         {
-            player.transform.position = new Vector3(x, y, z);  // 플레이어 위치를 지정
+            player.transform.position = new Vector3(x, y, z);  // 저장한 위치로 플레이어 위치를 지정 (현재 씬의 리스폰 위치로)
         }
         else
         {
-            player.transform.position = respawn.transform.position;
+            player.transform.position = respawn.transform.position;  // 맞다면 그대로 리스폰
         }
 
-        //player.transform.rotation = new Quaternion(rx, ry, rz, rw);  // 플레이어 회전을 지정
-        damage.curHealth = hp;
+        damage.curHealth = hp;  // 저장한 HP로 플레이어 HP를 지정
 
         weaponSwitch.hasWeapons[0] = PlayerPrefs.GetInt("Weapon1") != 0;
         weaponSwitch.hasWeapons[1] = PlayerPrefs.GetInt("Weapon2") != 0;
         weaponSwitch.hasWeapons[2] = PlayerPrefs.GetInt("Weapon3") != 0;
-        weaponSwitch.hasWeapons[3] = PlayerPrefs.GetInt("Weapon4") != 0;
+        weaponSwitch.hasWeapons[3] = PlayerPrefs.GetInt("Weapon4") != 0;  // 무기 소유 여부가 0이라면 불리언도 0, 1이라면 불리언도 1
 
-        Debug.Log("Load Successful" + " " + PlayerPrefs.GetInt("Scene"));
+        Debug.Log("Load Successful" + " " + PlayerPrefs.GetInt("Scene"));  // 디버그용 로그
     }
 
     private void OnApplicationQuit()
     {
-        Save();
+        Save();  // 애플리케이션(게임)을 강제종료할 때 자동으로 저장
     }
 }

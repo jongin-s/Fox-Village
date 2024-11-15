@@ -6,7 +6,6 @@ using TMPro;
 
 public class JewelPanel : MonoBehaviour
 {
-    public FixedTouchField script;
     public ItemCollection item;
     public GameObject[] labels;
     public Button[] buttons;

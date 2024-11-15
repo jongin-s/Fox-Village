@@ -31,19 +31,11 @@ public class Enemy : MonoBehaviour
 
     Rigidbody rigid;  // 몬스터의 Rigidbody
     NavMeshAgent nav;  // 몬스터의 추격 알고리즘
-    Animator anim;  // 몬스터의 애니메이터
-
-    void ChaseStart()  // 추격 모드 함수
-    {
-        isChase = true;  // 추격 여부는 참
-        anim.SetBool("isWalk", true);  // 이동 애니메이션
-    }
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        nav = GetComponent<NavMeshAgent>();
-        anim = GetComponentInChildren<Animator>();  // 컴포넌트를 가져옴
+        nav = GetComponent<NavMeshAgent>();  // 컴포넌트를 가져옴
 
         curHealth = maxHealth;  // 시작할 때 현재 체력은 최대 체력과 같음
         healthBar.SetMaxHealth(maxHealth);  // 체력 바를 최대 체력으로 설정
@@ -52,6 +44,11 @@ public class Enemy : MonoBehaviour
         initPosition = transform.position;  // 처음 등장한 좌표를 저장 (나중에 돌아올 수 있게)
 
         Invoke("ChaseStart", 0);  // 등장 즉시 추격 모드로 돌입하지만, 타깃이 가까이 다가와야만 추격
+    }
+
+    void ChaseStart()  // 추격 모드 함수
+    {
+        isChase = true;  // 추격 여부는 참
     }
 
     void Chase()  // 추격 함수
@@ -79,7 +76,6 @@ public class Enemy : MonoBehaviour
     {
         isChase = false;  // 공격 중일때는 잠시 추격을 멈추고
         isAttack = true;  // 공격을 실행
-        anim.SetBool("isAttack", true);  // 공격 애니메이션 발동
 
         switch (enemyType)
         {
@@ -107,7 +103,6 @@ public class Enemy : MonoBehaviour
 
         isChase = true;  // 공격이 끝나면 추격을 재개하고
         isAttack = false;  // 공격을 종료
-        anim.SetBool("isAttack", false);  // 공격 애니메이션 종료
     }
 
     void Targetting()  // 공격을 겨냥하는 함수
@@ -190,7 +185,6 @@ public class Enemy : MonoBehaviour
 
             isChase = false;
             nav.enabled = false;  // 추격 중지
-            anim.SetTrigger("doDie");  // 기절 애니메이션 발동
 
             reactVec = reactVec.normalized;
             reactVec += Vector3.up;
