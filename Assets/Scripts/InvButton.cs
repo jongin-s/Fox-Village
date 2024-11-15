@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// 캔버스 오브젝트의 컴포넌트로 삽입
+
 public class InvButton : MonoBehaviour
 {
     public GameObject inv;  // Inspector에서 Inventory Panel을 드래그
