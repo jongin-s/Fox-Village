@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
 
     public void Save()
     {
-        PlayerPrefs.SetFloat("RespawnX", respawn.transform.position.x);
-        PlayerPrefs.SetFloat("RespawnY", respawn.transform.position.y);
-        PlayerPrefs.SetFloat("RespawnZ", respawn.transform.position.z);  // 현재 맵의 리스폰 위치를 저장
+        PlayerPrefs.SetFloat("RespawnX", player.transform.position.x);
+        PlayerPrefs.SetFloat("RespawnY", player.transform.position.y);
+        PlayerPrefs.SetFloat("RespawnZ", player.transform.position.z);  // 현재 맵의 리스폰 위치를 저장
 
         PlayerPrefs.SetInt("Scene", SceneManager.GetActiveScene().buildIndex);  // 현재 씬 번호를 저장
 
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         float y = PlayerPrefs.GetFloat("RespawnY");
         float z = PlayerPrefs.GetFloat("RespawnZ");  // 저장한 위치 벡터를 불러옴, 씬 번호는 LoadingScreen.cs에서 관리
 
-        if (respawn.transform.position != new Vector3(x, y, z))  // 리스폰 위치가 저장한 위치가 아니라면 (마지막으로 다른 씬에서 저장했다면)
+        if (PlayerPrefs.GetInt("Scene") == SceneManager.GetActiveScene().buildIndex)  // 리스폰 씬이 저장한 씬이 아니라면 (마지막으로 다른 씬에서 저장했다면)
         {
             player.transform.position = new Vector3(x, y, z);  // 저장한 위치로 플레이어 위치를 지정 (현재 씬의 리스폰 위치로)
         }

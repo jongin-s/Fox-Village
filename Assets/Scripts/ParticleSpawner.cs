@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// 오브젝트 Canvas의 자식 오브젝트 Particle의 컴포넌트
+
 public class UITouchParticleSpawner : MonoBehaviour
 {
     public ParticleSystem particlePrefab; // UI용 파티클 프리팹
