@@ -19,6 +19,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void Retry()  // 게임 오버 메뉴에서 Retry 버튼을 누르면 실행되는 함수
     {
+        PlayerPrefs.SetInt("HP", 200);
         StartCoroutine(LoadSceneAsync(SceneManager.GetActiveScene().buildIndex));  // 현재 씬을 다시 로드
         gameObject.SetActive(false);  // 이 오브젝트(게임 오버 메뉴)를 비활성화
     }

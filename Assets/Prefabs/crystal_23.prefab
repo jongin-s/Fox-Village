@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5231334608318018789}
   - component: {fileID: 7167485370383764610}
   - component: {fileID: 2984451965868497172}
+  - component: {fileID: 925922068327718}
   m_Layer: 0
   m_Name: crystal_23
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +107,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.42038852, y: 0.5266251, z: 0.35023564}
   m_Center: {x: -0.0934216, y: 0.26410893, z: -0.12904909}
+--- !u!114 &925922068327718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3696947041285205375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c850200fcbf77418e1daa3e02b2624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  sound: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+  value: 0
 --- !u!1001 &5987020037775992949
 PrefabInstance:
   m_ObjectHideFlags: 0

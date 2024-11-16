@@ -24,8 +24,16 @@ public class Damage : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         anim = GetComponentInChildren<Animator>();  // 컴포넌트를 가져옴
 
-        curHealth = maxHealth;  // 시작할 때 현재 체력은 최대 체력과 같음
+        if (!PlayerPrefs.HasKey("HP"))  // 저장된 HP 값이 없다면
+        {
+            curHealth = maxHealth;  // 시작할 때 현재 체력은 최대 체력과 같음
+        }
+        else
+        {
+            curHealth = PlayerPrefs.GetInt("HP");  // 아니라면 그 HP 값으로 지정
+        }
         healthBar.SetMaxHealth(maxHealth);  // 체력 바를 최대 체력으로 설정
+        healthBar.SetHealth(curHealth);  // 그 다음 체력 바를 현재 체력으로 설정
         menu.SetActive(false);  // 시작할 때 리플레이 메뉴는 꺼져 있어야 함
     }
 

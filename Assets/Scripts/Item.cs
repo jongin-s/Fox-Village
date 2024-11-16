@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public enum Type {Jade, Diamond, Ruby, Amethyst, Weapon}  // Type의 열거형, 각 아이템의 이름을 나열하고 아이템별로 인스펙터에서 설정
+    public enum Type {Jade, Diamond, Ruby, Amethyst, Sapphire, Weapon}  // Type의 열거형, 각 아이템의 이름을 나열하고 아이템별로 인스펙터에서 설정
     public Type type;  // Type의 일반형, 각 아이템의 이름을 불러올 때 사용
     public AudioClip sound;  // 원하는 오디오 클립을 인스펙터로 드래그
     public int value;  // Weapon 타입의 아이템에서만 사용하는 무기의 일련번호

@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI invTxt1;  // 붉은 보석의 UI 텍스트
     public Image[] weaponImage;  // 무기 교체 UI에 표시될 무기 사진
     public GameObject respawn;  // 플레이어가 처음으로 맵에 등장할 때 위치, 이상은 모두 인스펙터에서 설정
+    Damage damage; // 대미지 컴포넌트
     WeaponSwitch weaponSwitch;  // 무기 교체 컴포넌트, 이 두 컴포넌트는 플레이어 오브젝트에서 가져옴
 
     public void Start()
     {
+        damage = player.GetComponent<Damage>();
         weaponSwitch = player.GetComponent<WeaponSwitch>();  // 컴포넌트를 가져옴
         Load();  // 이 스크립트가 처음으로 실행될 때 같이 실행
         Application.targetFrameRate = 24;  // 목표 FPS
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
 
         PlayerPrefs.SetInt("Scene", SceneManager.GetActiveScene().buildIndex);  // 현재 씬 번호를 저장
 
+        PlayerPrefs.SetInt("HP", damage.curHealth);  // HP를 저장
+
         PlayerPrefs.SetInt("Weapon1", weaponSwitch.hasWeapons[0] ? 1 : 0);
         PlayerPrefs.SetInt("Weapon2", weaponSwitch.hasWeapons[1] ? 1 : 0);
         PlayerPrefs.SetInt("Weapon3", weaponSwitch.hasWeapons[2] ? 1 : 0);
@@ -73,6 +77,8 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = respawn.transform.position;  // 맞다면 그대로 리스폰
         }
+
+        damage.curHealth = PlayerPrefs.GetInt("HP");  // HP를 설정
 
         weaponSwitch.hasWeapons[0] = PlayerPrefs.GetInt("Weapon1") != 0;
         weaponSwitch.hasWeapons[1] = PlayerPrefs.GetInt("Weapon2") != 0;

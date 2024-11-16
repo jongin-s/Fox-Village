@@ -19,15 +19,21 @@ public class ItemCollection : MonoBehaviour
     {
         weaponSwitch = GetComponent<WeaponSwitch>();  // 컴포넌트를 가져옴
 
-        if (!PlayerPrefs.HasKey("coin") || !PlayerPrefs.HasKey("coin2"))  // 푸른 보석과 붉은 보석 중 하나라도 null이라면
+        if (!PlayerPrefs.HasKey("coin"))  // 푸른 보석의 값이 null이라면
         {
-            coin = 0;
-            coin2 = 0;  // 둘 다 그 값은 0
+            coin = 0;  //그 값은 0
         }
         else
         {
-            coin = PlayerPrefs.GetInt("coin");
-            coin2 = PlayerPrefs.GetInt("coin2");  // 아니라면 저장된 값을 가져와서 적용
+            coin = PlayerPrefs.GetInt("coin");  // 아니라면 저장된 값을 가져와서 적용
+        }
+        if (!PlayerPrefs.HasKey("coin2"))
+        {
+            coin2 = 0;
+        }
+        else
+        {
+            coin2 = PlayerPrefs.GetInt("coin2");
         }
         manager.GetItem(manager.invTxt0, coin);
         manager.GetItem(manager.invTxt1, coin2);  // 보석 값을 Game Manager로 전달
@@ -55,6 +61,10 @@ public class ItemCollection : MonoBehaviour
 
                 case Item.Type.Amethyst:
                     coin += 50;
+                    break;
+
+                case Item.Type.Sapphire:
+                    coin += 25;
                     break;  // 그 외의 다른 타입에 대해서도 동일하게 작성
 
                 case Item.Type.Weapon:
@@ -62,11 +72,12 @@ public class ItemCollection : MonoBehaviour
                     break;  // Weapon 타입 무기라면 상응하는 일련번호의 무기의 소유 여부를 true로 설정
             }
         }
-        if (coin > maxCoin) coin = maxCoin;
-        if (coin2 > maxCoin2) coin2 = maxCoin2;  // coin이 maxCoin을 넘어가지 않도록 설정
-        PlayerPrefs.SetInt("coin", coin);
-        PlayerPrefs.SetInt("coin2", coin2);  // 보석 값을 업데이트하고 저장
-        manager.GetItem(manager.invTxt0, coin);
-        manager.GetItem(manager.invTxt1, coin2);  // coin을 Game Manager로 전달
+        if (coin > maxCoin) coin = maxCoin;  // coin이 maxCoin을 넘어가지 않도록 설정
+        PlayerPrefs.SetInt("coin", coin);  // 보석 값을 업데이트하고 저장
+        manager.GetItem(manager.invTxt0, coin);  // coin을 Game Manager로 전달
+
+        if (coin2 > maxCoin2) coin2 = maxCoin2;
+        PlayerPrefs.SetInt("coin2", coin2);
+        manager.GetItem(manager.invTxt1, coin2);
     }
 }
