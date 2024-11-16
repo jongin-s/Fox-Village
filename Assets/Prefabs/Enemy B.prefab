@@ -253,10 +253,10 @@ MonoBehaviour:
   deathSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
   healthBar: {fileID: 5611584527763428712}
   items:
-  - {fileID: 3082213356803771937, guid: 14e651e2cd11d8e449dbd371cfbd01f3, type: 3}
-  - {fileID: 1579377406206096640, guid: 54f37c0ce13a71b489b2e5ed44170260, type: 3}
-  - {fileID: 8591679294560943519, guid: 9680e70ed93dd8241a2a0856c5491762, type: 3}
-  - {fileID: 3206788811588989469, guid: 2ff37efb5e7d918478621c7f2f98bcc3, type: 3}
+  - {fileID: 3696947041285205375, guid: f403f02fadaf77b4590ab03b76e6e80b, type: 3}
+  - {fileID: 3696947041285205375, guid: f403f02fadaf77b4590ab03b76e6e80b, type: 3}
+  - {fileID: 3696947041285205375, guid: f403f02fadaf77b4590ab03b76e6e80b, type: 3}
+  - {fileID: 3696947041285205375, guid: f403f02fadaf77b4590ab03b76e6e80b, type: 3}
   initPosition: {x: 0, y: 0, z: 0}
   deathParticleEffect: {fileID: 6184408002500343489, guid: c779b443ba62cf442ba58b6e69f77b15, type: 3}
   monsterEffect: {fileID: 8531062207634243018, guid: c01345d55c10daf4a8d527b1fe1a7eb2, type: 3}
