@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     public GameObject[] items;  // 기절했을 때 드랍하는 아이템들 (복수)
     public Vector3 initPosition;  // 처음 등장한 좌표, 홈 구역의 중심이 됨
     public GameObject deathParticleEffect;  // 기절했을 때 파티클 효과, 이상의 모든 인수는 인스펙터에서 설정
+    public ParticleSystem monsterEffect; // 몬스터 파티클 효과
 
     public delegate void EnemyDead();
     public static event EnemyDead OnEnemyDead;  // 대리자와 상시 이벤트
@@ -43,7 +44,20 @@ public class Enemy : MonoBehaviour
         target = GameObject.FindWithTag("Player").transform;  // "Player" 태그를 가진 오브젝트는 하나(Player2)밖에 없으므로 타깃으로 설정
         initPosition = transform.position;  // 처음 등장한 좌표를 저장 (나중에 돌아올 수 있게)
 
+        if (monsterEffect != null)
+        {
+            monsterEffect.Play(); // 파티클 효과 시작
+        }
+
         Invoke("ChaseStart", 0);  // 등장 즉시 추격 모드로 돌입하지만, 타깃이 가까이 다가와야만 추격
+    }
+
+    private void OnDestroy()
+    {
+        if (monsterEffect != null)
+        {
+            monsterEffect.Stop(); // 파티클 효과 중지
+        }
     }
 
     void ChaseStart()  // 추격 모드 함수

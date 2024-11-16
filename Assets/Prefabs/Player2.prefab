@@ -1899,6 +1899,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coin: 0
   maxCoin: 100000
+  coin2: 0
+  maxCoin2: 100000
   manager: {fileID: 0}
 --- !u!114 &4409808999388529250
 MonoBehaviour:

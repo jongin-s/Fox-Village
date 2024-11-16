@@ -891,6 +891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   invTxt0: {fileID: 0}
+  invTxt1: {fileID: 0}
   weaponImage:
   - {fileID: 0}
   - {fileID: 0}
