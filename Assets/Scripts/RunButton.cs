@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// 캔버스의 컴포넌트
+
 public class RunButton : MonoBehaviour
 {
     public bool click=false;

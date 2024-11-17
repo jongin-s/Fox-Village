@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 캔버스의 컴포넌트
+
 public class WeaponButton : MonoBehaviour
 {
     public bool sDown1;

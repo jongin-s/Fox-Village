@@ -1,5 +1,7 @@
 using UnityEngine;
 
+// 플레이어 오브젝트의 컴포넌트
+
 public class Player : MonoBehaviour
 {
     public VariableJoystick joy;  // 조이스틱 클래스의 메소드
@@ -11,12 +13,12 @@ public class Player : MonoBehaviour
     Animator anim;  // Animator 클래스의 메소드
     RunButton runButton;  // RunButton 클래스의 메소드
     JumpButton jumpButton;  // JumpButton 클래스의 메소드
-    Damage damage;
+    Damage damage;  // 대미지 컴포넌트
 
     Vector3 moveVec;  // 3차원 벡터 변수
     [SerializeField] Transform cam;  // Transform 클래스의 메소드 (카메라)
 
-    public AudioSource footstep;
+    public AudioSource footstep;  // 발자국 소리 오디오 소스
 
     private void Start()
     {
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour
         runButton = GameObject.Find("Canvas").GetComponent<RunButton>();
         jumpButton = GameObject.Find("Canvas").GetComponent<JumpButton>();  // Rigidbody와 Animator는 이 스크립트를 포함하는 오브젝트 내에 있기 때문에 GetComponent를 그대로 사용하면 되지만, 버튼은 그렇지 않기 때문에 반드시 버튼이 포함된 오브젝트의 이름을 찾아야 함!
 
-        footstep.gameObject.SetActive(false);
+        footstep.gameObject.SetActive(false);  // 시작할 때 발자국 소리는 비활성화
     }
 
     private void Move()
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour
 
     private void Turn()
     {
-        if (moveVec != Vector3.zero)
+        if (moveVec != Vector3.zero)  // 플레이어가 움직이고 있을 때
         {
             Quaternion dirQuat = Quaternion.LookRotation(moveVec);
             Quaternion moveQuat = Quaternion.Slerp(rigid.rotation, dirQuat, 0.3f);
@@ -78,10 +80,10 @@ public class Player : MonoBehaviour
 
     private void FootSteps()
     {
-        if (Mathf.Pow(joy.Horizontal, 2) + Mathf.Pow(joy.Vertical, 2) != 0 && !isJump)
+        if (Mathf.Pow(joy.Horizontal, 2) + Mathf.Pow(joy.Vertical, 2) != 0 && !isJump)  // 플레이어가 움직이고 있고 점프 중이 아닐 때
         {
-            footstep.gameObject.SetActive(true);
-            footstep.pitch = 0.8f * (runButton.click ? 2 : 1);
+            footstep.gameObject.SetActive(true);  // 발자국 소리 활성화
+            footstep.pitch = 0.8f * (runButton.click ? 2 : 1);  // 달리고 있을 때는 발자국 소리가 2배로 빨라짐
         }
         else
         {
@@ -89,9 +91,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate()  // 물리 함수는 FixedUpdate로 처리
     {
-        if (!damage.isDead)
+        if (!damage.isDead)  // 기절한 상태가 아닐 때
         {
             Move();
             Jump();
@@ -99,12 +101,12 @@ public class Player : MonoBehaviour
             FootSteps();  // 함수 정리
         }
 
-        if (!isJump)
+        if (!isJump)  // 점프 중이 아닐 때
         {
-            rigid.angularVelocity = Vector3.zero;
-            if (rigid.velocity.y >= 0)
+            rigid.angularVelocity = Vector3.zero;  // 회전 가속도를 0으로 설정
+            if (rigid.velocity.y >= 0)  // 지상에 있을 때
             {
-                rigid.velocity = Vector3.zero;
+                rigid.velocity = Vector3.zero;  // 가속도를 0으로
             }
         }
     }
