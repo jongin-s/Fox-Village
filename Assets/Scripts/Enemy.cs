@@ -171,7 +171,15 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Melee")  // 무기의 태그를 반드시 "Melee"로 설정!
         {
             Weapon weapon = other.GetComponent<Weapon>();  // 무기의 Weapon 컴포넌트를 가져옴
-            curHealth -= weapon.damage;  // 무기의 대미지만큼 체력 감소
+            switch (enemyType)  // 몬스터의 종류에 따라 위의 값이 달라짐
+            {
+                case Type.A:  // 몬스터 A는 대미지를 많이 입음
+                    curHealth -= weapon.damage;
+                    break;
+                case Type.B:  // 몬스터 B는 대미지를 적게 입음
+                    curHealth -= (int)(weapon.damage * 0.8f);
+                    break;
+            }
             healthBar.SetHealth(curHealth);  // 체력 바는 현재 체력을 반영
 
             Vector3 reactVec = transform.position - other.transform.position;  // 넉백 벡터
