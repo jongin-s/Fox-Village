@@ -50,11 +50,13 @@ public class JewelPanel : MonoBehaviour
         if (count * 1000 > item.coin)  // 푸른 보석의 현재 개수보다 지불하려는 개수가 더 많다면
         {
             StopCoroutine(Talk(1));
+            StopCoroutine(Talk(2));
             StartCoroutine(Talk(1));
             return;  // 경고 메시지 출력
         }
         else
         {
+            StopCoroutine(Talk(1));
             StopCoroutine(Talk(2));
             StartCoroutine(Talk(2));  // 성공 메시지 출력
             item.coin -= count * 1000;

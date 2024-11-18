@@ -49,11 +49,13 @@ public class Shop : MonoBehaviour
             if (price > item.coin)  // 보석이 부족하다면
             {
                 StopCoroutine(Talk(1));
+                StopCoroutine(Talk(2));
                 StartCoroutine(Talk(1));  // 잔돈 부족 메시지를 출력
                 return;
             }
             else
             {
+                StopCoroutine(Talk(1));
                 StopCoroutine(Talk(2));
                 StartCoroutine(Talk(2));  // 구매 성공 메시지를 출력
                 item.coin -= price;  // 현재 잔돈에서 가격을 차감
@@ -65,11 +67,13 @@ public class Shop : MonoBehaviour
             if (price > item.coin2)
             {
                 StopCoroutine(Talk(1));
+                StopCoroutine(Talk(2));
                 StartCoroutine(Talk(1));
                 return;
             }
             else
             {
+                StopCoroutine(Talk(1));
                 StopCoroutine(Talk(2));
                 StartCoroutine(Talk(2));
                 item.coin2 -= price;
