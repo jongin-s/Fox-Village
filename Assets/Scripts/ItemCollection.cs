@@ -25,7 +25,7 @@ public class ItemCollection : MonoBehaviour
         }
         else
         {
-            coin = PlayerPrefs.GetInt("coin");  // 아니라면 저장된 값을 가져와서 적용
+            coin = 10000;  // 아니라면 저장된 값을 가져와서 적용
         }
         if (!PlayerPrefs.HasKey("coin2"))
         {
@@ -33,7 +33,7 @@ public class ItemCollection : MonoBehaviour
         }
         else
         {
-            coin2 = PlayerPrefs.GetInt("coin2");
+            coin2 = 100;
         }
         manager.GetItem(manager.invTxt0, coin);
         manager.GetItem(manager.invTxt1, coin2);  // 보석 값을 Game Manager로 전달
