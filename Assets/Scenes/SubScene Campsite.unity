@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402358, g: 0.4931665, b: 0.57223374, a: 1}
+  m_IndirectSpecularColor: {r: 0.44393122, g: 0.49315083, b: 0.57221663, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12321,11 +12321,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2755174745412973296, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000038219774
+      value: -0.000000038219774
       objectReference: {fileID: 0}
     - target: {fileID: 2755174745412973296, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000031332725
+      value: 0.000000031332725
       objectReference: {fileID: 0}
     - target: {fileID: 4474606965767291812, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12337,11 +12337,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4474606965767291812, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000009979813
+      value: -0.000000009979813
       objectReference: {fileID: 0}
     - target: {fileID: 4474606965767291812, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000000818149
+      value: 0.00000000818149
       objectReference: {fileID: 0}
     - target: {fileID: 4477639629701650967, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_Follow
@@ -12473,6 +12473,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6287001552272190649, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
   m_PrefabInstance: {fileID: 1284883555}
   m_PrefabAsset: {fileID: 0}
+--- !u!20 &1284883559 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1800685448339006145, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
+  m_PrefabInstance: {fileID: 1284883555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1293258478
 GameObject:
   m_ObjectHideFlags: 0
@@ -12485,6 +12490,7 @@ GameObject:
   - component: {fileID: 1293258481}
   - component: {fileID: 1293258480}
   - component: {fileID: 1293258482}
+  - component: {fileID: 1293258483}
   m_Layer: 3
   m_Name: Main Terrain
   m_TagString: Floor
@@ -12597,6 +12603,21 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 9801a7d656c443846aa34d960b68eb8a, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &1293258483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293258478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52ed8c8b532b4a6b8cc315c22584067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain: {fileID: 1293258481}
+  mainCamera: {fileID: 1284883559}
+  hideDistance: 25
 --- !u!1001 &1313204812
 PrefabInstance:
   m_ObjectHideFlags: 0
