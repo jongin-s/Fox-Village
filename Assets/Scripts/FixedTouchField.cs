@@ -74,6 +74,8 @@ public class FixedTouchField : MonoBehaviour
             if ((Input.touches[0].position.x >= stretch && Input.touches[0].position.x < Screen.width - stretch)
                 && (Input.touches[1].position.x >= stretch && Input.touches[1].position.x < Screen.width - stretch))
             {
+                TouchDist = Vector2.zero;
+
                 Vector2 touch0PrevPos = Input.touches[0].position - Input.touches[0].deltaPosition;
                 Vector2 touch1PrevPos = Input.touches[1].position - Input.touches[1].deltaPosition;  // 두 손가락의 터치 간 거리 차이를 계산하여 줌
 
