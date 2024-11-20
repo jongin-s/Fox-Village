@@ -44,6 +44,10 @@ public class FixedTouchField : MonoBehaviour
             {
                 TouchDist = Input.touches[0].deltaPosition;  // 터치 거리는 첫번째 터치의 델타값(변위)
             }
+            else
+            {
+                TouchDist = Vector2.zero;
+            }
             cam.m_XAxis.Value += TouchDist.x * rotSensitive * Time.deltaTime * 45;
             cam.m_YAxis.Value -= TouchDist.y * rotSensitive * Time.deltaTime;  // x축 회전은 그대로 두고, y축 회전은 반대 방향으로 적용
         }
@@ -58,6 +62,11 @@ public class FixedTouchField : MonoBehaviour
                 && (Input.touches[1].position.x >= stretch && Input.touches[1].position.x < Screen.width - stretch))  // 터치가 화면의 가로 여백 내에 있을 때
             {
                 TouchDist = Input.touches[1].deltaPosition;  // 터치 거리는 첫번째 터치의 델타값(변위)
+            }
+            if (!(Input.touches[0].position.x >= stretch && Input.touches[0].position.x < Screen.width - stretch)
+                && !(Input.touches[1].position.x >= stretch && Input.touches[1].position.x < Screen.width - stretch))
+            {
+                TouchDist = Vector2.zero;
             }
             cam.m_XAxis.Value += TouchDist.x * rotSensitive * Time.deltaTime * 45;
             cam.m_YAxis.Value -= TouchDist.y * rotSensitive * Time.deltaTime;  // x축 회전은 그대로 두고, y축 회전은 반대 방향으로 적용
