@@ -396,6 +396,11 @@ Transform:
   - {fileID: 336828829}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &67032920 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6487062325223992169, guid: d7ec8c7be76417f4daac840b445de566, type: 3}
+  m_PrefabInstance: {fileID: 1228291130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &75506742 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8300289200339588786, guid: 978d2d8a582f5544a9b0022a7cf1dbf4, type: 3}
@@ -2263,6 +2268,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2914152636362448288, guid: 06e76ea337311e448845f2df5c9319bc, type: 3}
+      propertyPath: swingSound
+      value: 
+      objectReference: {fileID: 67032920}
     - target: {fileID: 3091720732333563662, guid: 06e76ea337311e448845f2df5c9319bc, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2343,6 +2352,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4836115831215057333, guid: 06e76ea337311e448845f2df5c9319bc, type: 3}
+      propertyPath: swingSound
+      value: 
+      objectReference: {fileID: 67032920}
     - target: {fileID: 4921043835040931370, guid: 06e76ea337311e448845f2df5c9319bc, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2399,6 +2412,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7984446670924502029, guid: 06e76ea337311e448845f2df5c9319bc, type: 3}
+      propertyPath: swingSound
+      value: 
+      objectReference: {fileID: 67032920}
     - target: {fileID: 8238510916803133028, guid: 06e76ea337311e448845f2df5c9319bc, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2427,6 +2444,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8967527854084698277, guid: 06e76ea337311e448845f2df5c9319bc, type: 3}
+      propertyPath: swingSound
+      value: 
+      objectReference: {fileID: 67032920}
     - target: {fileID: 9031376532239624846, guid: 06e76ea337311e448845f2df5c9319bc, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -3844,7 +3865,7 @@ Transform:
   m_GameObject: {fileID: 336828828}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 550.3, y: 261, z: 442}
+  m_LocalPosition: {x: 600.3, y: 262, z: 412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6308,7 +6329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190894588530178271, guid: 978d2d8a582f5544a9b0022a7cf1dbf4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 667
+      value: 750
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12361,11 +12382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4504912507942065920, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000005133142
+      value: 0.00000005133144
       objectReference: {fileID: 0}
     - target: {fileID: 4504912507942065920, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000040944492
+      value: -0.0000000409445
       objectReference: {fileID: 0}
     - target: {fileID: 6287001552272190649, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12441,11 +12462,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8986140122806196758, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000062663545
+      value: 0.000000062663545
       objectReference: {fileID: 0}
     - target: {fileID: 8986140122806196758, guid: 28dcf682e6ee8454ba262dbdeaa1f261, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000048626568
+      value: -0.000000048626568
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
