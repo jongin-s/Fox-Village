@@ -88,6 +88,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Load Successful" + " " + PlayerPrefs.GetInt("Scene"));  // 디버그용 로그
     }
 
+    private void OnDestroy()
+    {
+        Save();
+    }
+
     private void OnApplicationQuit()
     {
         Save();  // 애플리케이션(게임)을 강제종료할 때 자동으로 저장

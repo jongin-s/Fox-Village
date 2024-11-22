@@ -32,7 +32,7 @@ public class FixedTouchField : MonoBehaviour
         cam = GetComponent<CinemachineFreeLook>();  // 스스로 컴포넌트를 가져옴
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (Input.touchCount == 0)  // 터치가 없을 때
         {
