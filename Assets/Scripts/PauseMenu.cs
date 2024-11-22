@@ -47,6 +47,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()  // 종료 버튼
     {
+        Time.timeScale = 1f; // 시간 원상 복구
         SceneManager.LoadScene(0);  // 메인 메뉴 씬으로 복귀
     }
 
