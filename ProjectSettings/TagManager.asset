@@ -3,19 +3,28 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Floor
+  - Item
+  - NPC
+  - Melee
+  - Enemy
+  - EnemyAttack
+  - Shop
+  - Canvas
+  - Weapon
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Floor
   - Water
   - UI
+  - Player
   - 
-  - 
-  - 
-  - 
-  - 
+  - Enemy
+  - DeadEnemy
+  - EnemyAttack
   - 
   - 
   - 
